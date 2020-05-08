@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/ErrorStyles.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a6998d7322.js" crossorigin="anonymous"></script>
+    <title>@ViewBag.Title</title>
+    <style>
+        .navbar-right {
+            float: right !important;
+            margin-right: 15px;
+            margin-left: 15px;
+        }
+
+        .container {
+            width: auto;
+            max-width: 680px;
+            padding: 0 15px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <div class="navbar-brand" href="#">
+            <span class="d-none d-sm-block">BookStore - книжный магазин</span>
+            <div class="d-block d-sm-none">Book</div>
+            <div class="d-block d-sm-none">Store</div>
+        </div>      
+        <div class="navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>                    
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+            <form class="mt-2 mt-md-0">
+                @Html.Action("Summary", "Cart")
+            </form>
+        </div>
+    </nav>
+
+
+    <div class="d-block d-sm-none">
+        @Html.Action("Menu", "Nav", new { horizontalNav = true })
+    </div>
+    <div class="container-fluid">
+
+        <div class="row">
+            <div id="categories" class="col-sm-3 d-none d-sm-block">
+                @Html.Action("Menu", "Nav")
+            </div>
+            <div class="col-12 col-sm-8">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <br />
+        <footer class="footer fixed-bottom">
+            @if (IsSectionDefined("Footer"))
+            {
+                @RenderSection("Footer")
+            }
+            else
+            {
+                <div class="container" style="text-align:center;">
+                    <span class="text-muted">All rights reserved. Website Corp. &copy; 2020</span>
+                </div>
+            }
+        </footer>
+</body>
+</html>

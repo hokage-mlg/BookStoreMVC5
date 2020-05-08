@@ -1,0 +1,45 @@
+﻿@model BookStore.Domain.Entities.DeliveryDetails
+
+@{
+    ViewBag.Title = "GameStore: форма заказа";
+}
+
+<h2>Оформить заказ сейчас</h2>
+<p>Пожалуйста введи ваши контактные данные, и мы сразу отправим товар!</p>
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary();
+    <h3>Данные</h3>
+    <div class="form-group">
+        <label>Введите фамилию, имя, отчество получателя:</label>
+        @Html.TextBoxFor(x => x.FullName, new { @class = "form-control" })
+    </div>
+
+    <h3>Адрес доставки</h3>
+    foreach (var property in ViewData.ModelMetadata.Properties)
+    {
+        if (property.PropertyName != "FullName" && property.PropertyName != "GiftWrap" &&
+            property.PropertyName != "OrderId")
+        {
+            <div class="form-group">
+                <label>@(property.DisplayName ?? property.PropertyName)</label>
+                @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+            </div>
+        }
+    }
+
+    <h3>Опции</h3>
+
+    <div class="checkbox">
+        <label>
+            @Html.EditorFor(x => x.GiftWrap)
+            Использовать подарочную упаковку?
+        </label>
+    </div>
+
+    <div class="text-center">
+        <input class="btn btn-primary" type="submit" value="Обработать заказ" />
+    </div>
+}
