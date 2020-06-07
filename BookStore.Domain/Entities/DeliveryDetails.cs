@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookStore.Domain.Entities
 {
+    [Table("DeliveryDetails")]
     public class DeliveryDetails
     {
         [HiddenInput(DisplayValue = false)]
+        [Key]
         public int OrderId { get; set; }
         [Display(Name = "Фамилия, имя, отчество получателя")]
         [Required(ErrorMessage = "Пожалуйста, укажите Ф.И.О.")]

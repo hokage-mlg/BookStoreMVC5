@@ -75,13 +75,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IBookRepository.cs" />
+    <Compile Include="Abstract\IDeliveryDetailsRepository.cs" />
     <Compile Include="Abstract\IOrderProcessor.cs" />
+    <Compile Include="Abstract\IOrderProcessorDb.cs" />
+    <Compile Include="Concrete\DbOrderProcessor.cs" />
     <Compile Include="Concrete\EFBookRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
+    <Compile Include="Concrete\EFDeliveryDetailsRepository.cs" />
+    <Compile Include="Concrete\EFUserRepository.cs" />
     <Compile Include="Concrete\EmailOrderProcessor.cs" />
     <Compile Include="Entities\Book.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\DeliveryDetails.cs" />
+    <Compile Include="Entities\Purchase.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\Visitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

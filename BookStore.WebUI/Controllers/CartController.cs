@@ -8,14 +8,19 @@ namespace BookStore.WebUI.Controllers
 {
     public class CartController : Controller
     {
-        private IBookRepository repository;
+        private IBookRepository bookRepository;
+        private IDeliveryDetailsRepository deliveryDetailsRepository;
         private IOrderProcessor orderProcessor;
-        public CartController(IBookRepository repo, IOrderProcessor proc)
+        private IOrderProcessorDb orderProcessorDB;
+        public CartController(IBookRepository bookRepo, IOrderProcessor proc,
+            IDeliveryDetailsRepository delDetRepo, IOrderProcessorDb procDB)
         {
-            repository = repo;
+            bookRepository = bookRepo;
+            deliveryDetailsRepository = delDetRepo;
             orderProcessor = proc;
+            orderProcessorDB = procDB;
         }
-        public CartController(IBookRepository repo) => repository = repo;
+        public CartController(IBookRepository repo) => bookRepository = repo;
         public ViewResult Checkout() => View(new DeliveryDetails());
         [HttpPost]
         public ViewResult Checkout(Cart cart,DeliveryDetails deliveryDetails)
@@ -25,6 +30,8 @@ namespace BookStore.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 orderProcessor.ProcessOrder(cart, deliveryDetails);
+                deliveryDetailsRepository.SaveDeliveryDetails(deliveryDetails);
+                orderProcessorDB.ProcessOrderDB(cart, deliveryDetails);
                 cart.Clear();
                 return View("Completed");
             }
@@ -42,14 +49,14 @@ namespace BookStore.WebUI.Controllers
         }
         public RedirectToRouteResult AddToCart(Cart cart, int bookId, string returnUrl)
         {
-            Book book = repository.Books.Where(b => b.BookId == bookId).FirstOrDefault();
+            Book book = bookRepository.Books.Where(b => b.BookId == bookId).FirstOrDefault();
             if (book != null)  
                 cart.AddItem(book, 1);
             return RedirectToAction("Index", new { returnUrl });
         }
         public RedirectToRouteResult RemoveFromCart(Cart cart, int bookId, string returnUrl)
         {
-            Book book = repository.Books.Where(b => b.BookId == bookId).FirstOrDefault();
+            Book book = bookRepository.Books.Where(b => b.BookId == bookId).FirstOrDefault();
             if (book != null)
                 cart.RemoveLine(book);
             return RedirectToAction("Index", new { returnUrl });

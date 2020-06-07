@@ -35,6 +35,8 @@ namespace BookStore.WebUI.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IBookRepository>().To<EFBookRepository>();
+            kernel.Bind<IDeliveryDetailsRepository>().To<EFDeliveryDetailsRepository>();
+            kernel.Bind<IOrderProcessorDb>().To<DbOrderProcessor>();
 
             EmailSettings emailSettings = new EmailSettings
             {

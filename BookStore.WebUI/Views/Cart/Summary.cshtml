@@ -15,6 +15,6 @@
 
 <div class="navbar-text navbar-right ml-auto">
     <b class="d-none d-sm-block">Ваша корзина:</b>
-    @Model.Lines.Sum(x => x.Quantity) игр,
+    @Model.Lines.Sum(x => x.Quantity) книг,
     @Model.ComputeTotalValue().ToString("# руб")
 </div>

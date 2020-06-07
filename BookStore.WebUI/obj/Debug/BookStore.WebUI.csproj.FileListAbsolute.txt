@@ -101,3 +101,5 @@ D:\Studying\LearnMVC\BookStore\BookStore.WebUI\bin\ru\System.Web.WebPages.Deploy
 D:\Studying\LearnMVC\BookStore\BookStore.WebUI\bin\ru\System.Web.WebPages.Razor.resources.dll
 D:\Studying\LearnMVC\BookStore\BookStore.WebUI\bin\EntityFramework.SqlServer.dll
 D:\Studying\LearnMVC\BookStore\BookStore.WebUI\bin\EntityFramework.SqlServer.xml
+D:\Studying\LearnMVC\BookStore\BookStore.WebUI\bin\System.Web.Providers.dll
+D:\Studying\LearnMVC\BookStore\BookStore.WebUI\bin\System.Web.Providers.xml
