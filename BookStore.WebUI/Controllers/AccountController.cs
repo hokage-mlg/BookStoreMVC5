@@ -28,7 +28,8 @@ namespace BookStore.WebUI.Controllers
                         {
                             Email = model.UserName,
                             Password = model.Password,
-                            Age = model.Age
+                            Age = model.Age,
+                            RoleId = 2
                         });
                         db.SaveChanges();
                         user = db.Users.Where(u => u.Email == model.UserName && u.Password == model.Password).FirstOrDefault();

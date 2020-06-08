@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using BookStore.Domain.Concrete;
 
 namespace BookStore.WebUI.Providers
 {
@@ -37,7 +38,18 @@ namespace BookStore.WebUI.Providers
 
         public override string[] GetRolesForUser(string username)
         {
-            throw new NotImplementedException();
+            var roles = new string[] { };
+            using (var db = new EFDbContext())
+            {
+                var user = db.Users.FirstOrDefault(u => u.Email == username);
+                if (user != null)
+                {
+                    var userRole = db.Roles.Find(user.RoleId);
+                    if (userRole != null)
+                        roles = new string[] { userRole.Name };
+                }
+            }
+            return roles;
         }
 
         public override string[] GetUsersInRole(string roleName)
@@ -47,7 +59,18 @@ namespace BookStore.WebUI.Providers
 
         public override bool IsUserInRole(string username, string roleName)
         {
-            throw new NotImplementedException();
+            var outputResult = false;
+            using (var db = new EFDbContext())
+            {
+                var user = db.Users.FirstOrDefault(u => u.Email == username);
+                if (user != null)
+                {
+                    var userRole = db.Roles.Find(user.RoleId);
+                    if (userRole != null && userRole.Name == roleName)
+                        outputResult = true;
+                }
+            }
+            return outputResult;
         }
 
         public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)

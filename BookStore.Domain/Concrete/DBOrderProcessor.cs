@@ -12,7 +12,7 @@ namespace BookStore.Domain.Concrete
     {
         EFDbContext context = new EFDbContext();
         public IEnumerable<Purchase> Purchases => context.Purchases;
-        public void ProcessOrderDB(Cart cart, DeliveryDetails deliveryDetails)
+        public void ProcessOrderDB(Cart cart, DeliveryDetails deliveryDetails, User user)
         {
             //TODO ДОБАВЛЯЕТ ТОЛЬКО ПОСЛЕДНИЙ ID ПОТОМУ ЧТО Я ДАУН! ИСПРАВИТЬ КЛАСС PURCHASE!
             //что то типа модицифированной корзины + idUser+idDeliveryInfo
@@ -20,9 +20,10 @@ namespace BookStore.Domain.Concrete
             {
                 Purchase purchase = new Purchase()
                 {
-                    Book_BookId = line.Book.BookId,
+                    BookId = line.Book.BookId,
                     Quantity = line.Quantity,
-                    DeliveryDetails_OrderId = deliveryDetails.OrderId
+                    OrderId = deliveryDetails.OrderId,
+                    UserId = user.UserId
                 };
                 context.Purchases.Add(purchase);
             }

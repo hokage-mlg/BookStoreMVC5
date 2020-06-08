@@ -12,26 +12,30 @@ namespace BookStore.WebUI.Controllers
         private IDeliveryDetailsRepository deliveryDetailsRepository;
         private IOrderProcessor orderProcessor;
         private IOrderProcessorDb orderProcessorDB;
+        private IUserRepository userRepository;
         public CartController(IBookRepository bookRepo, IOrderProcessor proc,
-            IDeliveryDetailsRepository delDetRepo, IOrderProcessorDb procDB)
+            IDeliveryDetailsRepository delDetRepo, IOrderProcessorDb procDB, IUserRepository userRepo)
         {
             bookRepository = bookRepo;
             deliveryDetailsRepository = delDetRepo;
             orderProcessor = proc;
             orderProcessorDB = procDB;
+            userRepository = userRepo;
         }
         public CartController(IBookRepository repo) => bookRepository = repo;
+        [Authorize(Roles = "user")]
         public ViewResult Checkout() => View(new DeliveryDetails());
         [HttpPost]
-        public ViewResult Checkout(Cart cart,DeliveryDetails deliveryDetails)
+        public ViewResult Checkout(Cart cart, DeliveryDetails deliveryDetails)
         {
+            var user = userRepository.Users.Where(u => u.Email == User.Identity.Name).FirstOrDefault();
             if (cart.Lines.Count() == 0)
-                ModelState.AddModelError("","Извините,ваша корзина пуста.");
+                ModelState.AddModelError("", "Извините,ваша корзина пуста.");
             if (ModelState.IsValid)
             {
                 orderProcessor.ProcessOrder(cart, deliveryDetails);
                 deliveryDetailsRepository.SaveDeliveryDetails(deliveryDetails);
-                orderProcessorDB.ProcessOrderDB(cart, deliveryDetails);
+                orderProcessorDB.ProcessOrderDB(cart, deliveryDetails, user);
                 cart.Clear();
                 return View("Completed");
             }
@@ -50,7 +54,7 @@ namespace BookStore.WebUI.Controllers
         public RedirectToRouteResult AddToCart(Cart cart, int bookId, string returnUrl)
         {
             Book book = bookRepository.Books.Where(b => b.BookId == bookId).FirstOrDefault();
-            if (book != null)  
+            if (book != null)
                 cart.AddItem(book, 1);
             return RedirectToAction("Index", new { returnUrl });
         }

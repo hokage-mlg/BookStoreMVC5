@@ -35,6 +35,7 @@ namespace BookStore.WebUI.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IBookRepository>().To<EFBookRepository>();
+            kernel.Bind<IUserRepository>().To<EFUserRepository>();
             kernel.Bind<IDeliveryDetailsRepository>().To<EFDeliveryDetailsRepository>();
             kernel.Bind<IOrderProcessorDb>().To<DbOrderProcessor>();
 

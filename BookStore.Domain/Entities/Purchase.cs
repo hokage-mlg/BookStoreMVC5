@@ -8,8 +8,9 @@ namespace BookStore.Domain.Entities
     {
         [Key]
         public int OrderLineId { get; set; }
-        public int Book_BookId { get; set; }
+        public int BookId { get; set; }
         public int Quantity { get; set; }
-        public int DeliveryDetails_OrderId { get; set; }
+        public int OrderId { get; set; }
+        public int UserId { get; set; }
     }
 }
