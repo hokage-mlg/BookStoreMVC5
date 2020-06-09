@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BookStore.Domain.Abstract;
 using BookStore.Domain.Entities;
 
@@ -14,11 +10,9 @@ namespace BookStore.Domain.Concrete
         public IEnumerable<Purchase> Purchases => context.Purchases;
         public void ProcessOrderDB(Cart cart, DeliveryDetails deliveryDetails, User user)
         {
-            //TODO ДОБАВЛЯЕТ ТОЛЬКО ПОСЛЕДНИЙ ID ПОТОМУ ЧТО Я ДАУН! ИСПРАВИТЬ КЛАСС PURCHASE!
-            //что то типа модицифированной корзины + idUser+idDeliveryInfo
-            foreach (var line  in cart.Lines)
+            foreach (var line in cart.Lines)
             {
-                Purchase purchase = new Purchase()
+                var purchase = new Purchase()
                 {
                     BookId = line.Book.BookId,
                     Quantity = line.Quantity,
@@ -26,6 +20,9 @@ namespace BookStore.Domain.Concrete
                     UserId = user.UserId
                 };
                 context.Purchases.Add(purchase);
+                var dbEntry = context.Books.Find(line.Book.BookId);
+                if (dbEntry != null)
+                    dbEntry.Quantity -= line.Quantity;
             }
             context.SaveChanges();
         }

@@ -2,13 +2,15 @@
 using System.Linq;
 using System.Web.Mvc;
 using BookStore.Domain.Abstract;
+using BookStore.Domain.Concrete;
 
 namespace BookStore.WebUI.Controllers
 {
     public class NavController : Controller
     {
         IBookRepository repository;
-        public NavController(IBookRepository repo) => repository = repo;
+        EFDbContext db = new EFDbContext();
+        public NavController(IBookRepository repo) => repository = repo;       
         public PartialViewResult Menu(string genre = null)
         {
             ViewBag.SelectedGenre = genre;
@@ -17,6 +19,15 @@ namespace BookStore.WebUI.Controllers
                 .Distinct()
                 .OrderBy(x => x);
             return PartialView("FlexMenu", genres);
+        }
+        public PartialViewResult SearchPanel() => PartialView();      
+        [HttpPost]
+        public ActionResult BookSearch(string name)
+        {
+            var allbooks = db.Books.Where(a => a.Author.Contains(name) || a.Title.Contains(name)).ToList();
+            if (allbooks.Count <= 0)
+                return View("NotFound");
+            return PartialView(allbooks);
         }
     }
 }

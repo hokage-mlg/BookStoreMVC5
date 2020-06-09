@@ -35,7 +35,7 @@ namespace BookStore.WebUI.Controllers
             {
                 orderProcessor.ProcessOrder(cart, deliveryDetails);
                 deliveryDetailsRepository.SaveDeliveryDetails(deliveryDetails);
-                orderProcessorDB.ProcessOrderDB(cart, deliveryDetails, user);
+                orderProcessorDB.ProcessOrderDB(cart, deliveryDetails, user);                
                 cart.Clear();
                 return View("Completed");
             }

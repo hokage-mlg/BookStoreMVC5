@@ -33,7 +33,7 @@ namespace BookStore.WebUI
                 new { controller = "Book", action = "List" },
                 new { page = @"\d+" }
             );
-            routes.MapRoute(null, "{controller}/{action}");
+            routes.MapRoute(null, "{controller}/{action}");                   
         }
     }
 }

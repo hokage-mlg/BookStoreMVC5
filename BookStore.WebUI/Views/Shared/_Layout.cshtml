@@ -8,6 +8,8 @@
     <link href="~/Content/ErrorStyles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/a6998d7322.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="~/Content/favicon.ico" type="image/x-icon">
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <title>@ViewBag.Title</title>
     <style>
         .navbar-right {
@@ -25,11 +27,11 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-        <div class="navbar-brand" href="#">
+        <a class="navbar-brand" href="@Url.Action("List", "Book")">
             <span class="d-none d-sm-block">BookStore - книжный магазин</span>
             <div class="d-block d-sm-none">Book</div>
             <div class="d-block d-sm-none">Store</div>
-        </div>      
+        </a>      
         <div class="navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -50,12 +52,14 @@
 
     <p>@User.Identity.Name</p>
     <div class="d-block d-sm-none">
+        @Html.Action("SearchPanel","Nav",new { horizontalNav = true })
         @Html.Action("Menu", "Nav", new { horizontalNav = true })
     </div>
     <div class="container-fluid">
 
         <div class="row">
             <div id="categories" class="col-sm-3 d-none d-sm-block">
+                @Html.Action("SearchPanel", "Nav")
                 @Html.Action("Menu", "Nav")
             </div>
             <div class="col-12 col-sm-8">
