@@ -6,24 +6,28 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/ErrorStyles.css" rel="stylesheet" />
+    <link href="~/Content/LayoutStyles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/a6998d7322.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="~/Content/favicon.ico" type="image/x-icon">
     <script src="~/Scripts/jquery-3.4.1.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-    <title>@ViewBag.Title</title>
+    <title>@ViewBag.Title|BookStore</title>
     <style>
-        .navbar-right {
-            float: right !important;
-            margin-right: 15px;
-            margin-left: 15px;
-        }
-
-        .container {
-            width: auto;
-            max-width: 680px;
-            padding: 0 15px;
+        body{
+  background-image: url("../..//Content/Background.png")
         }
     </style>
+    <script>
+        $('.dropdown-toggle').click(function (e) {
+            if ($(document).width() > 768) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                if (url !== '#') {
+                    window.location.href = url;
+                }
+            }
+        });
+    </script>
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
@@ -31,28 +35,61 @@
             <span class="d-none d-sm-block">BookStore - книжный магазин</span>
             <div class="d-block d-sm-none">Book</div>
             <div class="d-block d-sm-none">Store</div>
-        </a>      
+        </a>
         <div class="navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>                    
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Author", "Menu")">Я-автор</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="@Url.Action("Wholesale", "Menu")">Книги оптом</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    <a class="nav-link" href="@Url.Action("Cooperation", "Menu")">Сотрудничество</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("News", "Menu")">Новости</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("About", "Menu")">О нас</a>
+                </li>
+                @if (User.IsInRole("admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Admin")">Админ. панель</a>
+                    </li>
+                }
             </ul>
-            <form class="mt-2 mt-md-0">
+            <form class="form-inline mt-2 mt-md-0">
                 @Html.Action("Summary", "Cart")
             </form>
+            @if (User.IsInRole("admin") || User.IsInRole("user"))
+            {
+                <div class="dropdown form-inline mt-2 mt-md-0" style="margin-right:110px">
+                    <a class="btn btn-outline-light" href="@Url.Action("Login","Account")" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <i class="far fa-user-circle"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">Профиль</a>
+                        <a class="dropdown-item" href="#">Заказы</a>
+                        <a class="dropdown-item" href="#">Сообщения</a>
+                        <a class="dropdown-item" href="@Url.Action("Logout","Account")" style="color:red">Выйти</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <form class="form-inline mt-2 mt-md-0" style="margin-right:110px">
+                    <a class="btn btn-outline-light my-2 my-sm-0" href="@Url.Action("Login","Account")"><i class="far fa-user-circle"></i></a>
+                </form>
+            }
         </div>
     </nav>
 
+
     <p>@User.Identity.Name</p>
     <div class="d-block d-sm-none">
-        @Html.Action("SearchPanel","Nav",new { horizontalNav = true })
+        @Html.Action("SearchPanel", "Nav", new { horizontalNav = true })
         @Html.Action("Menu", "Nav", new { horizontalNav = true })
     </div>
     <div class="container-fluid">
@@ -68,17 +105,17 @@
         </div>
     </div>
     <br />
-        <footer class="footer fixed-bottom">
-            @if (IsSectionDefined("Footer"))
-            {
-                @RenderSection("Footer")
-            }
-            else
-            {
-                <div class="container" style="text-align:center;">
-                    <span class="text-muted">All rights reserved. Website Corp. &copy; 2020</span>
-                </div>
-            }
-        </footer>
+    <footer class="footer fixed-bottom">
+        @if (IsSectionDefined("Footer"))
+        {
+            @RenderSection("Footer")
+        }
+        else
+        {
+            <div class="container" style="text-align:center;">
+                <span class="text-muted">All rights reserved. Website Corp. &copy; 2020</span>
+            </div>
+        }
+    </footer>
 </body>
 </html>

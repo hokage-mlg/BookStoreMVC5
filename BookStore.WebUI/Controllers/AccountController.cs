@@ -10,6 +10,8 @@ namespace BookStore.WebUI.Controllers
     public class AccountController : Controller
     {
         public ActionResult Register() => View();
+        public ActionResult Logout()=>View();
+        public ActionResult Profile() => View();
 
         [HttpPost]
         [ValidateAntiForgeryToken]

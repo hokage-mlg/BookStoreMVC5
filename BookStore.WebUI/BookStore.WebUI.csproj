@@ -140,6 +140,7 @@
     <Content Include="Content\ErrorStyles.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\LayoutStyles.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -265,6 +266,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\NavController.cs" />
     <Compile Include="Filters\LogAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -313,6 +315,13 @@
     <Content Include="Views\Nav\BookSearch.cshtml" />
     <Content Include="Views\Nav\SearchPanel.cshtml" />
     <Content Include="Views\Nav\NotFound.cshtml" />
+    <Content Include="Views\Menu\Author.cshtml" />
+    <Content Include="Views\Menu\Wholesale.cshtml" />
+    <Content Include="Views\Menu\Cooperation.cshtml" />
+    <Content Include="Views\Menu\News.cshtml" />
+    <Content Include="Views\Menu\About.cshtml" />
+    <Content Include="Views\Account\Logout.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

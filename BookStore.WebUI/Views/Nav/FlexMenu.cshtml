@@ -11,7 +11,8 @@
     new
     {
         @class = horizontal ? "btn btn-default btn-sm" :
-            "btn btn-block btn-default btn-lg"
+            "btn btn-block btn-default btn-lg",
+        @style="color:white;text-shadow: black 1px 1px 0, black -1px -1px 0, black -1px 1px 0, black 1px -1px 0;"
     })
 
     @foreach (var link in Model)
@@ -26,7 +27,8 @@
         {
             @class = (horizontal ? "btn btn-default btn-sm"
                 : "btn btn-block btn-default btn-lg")
-                + (link == ViewBag.SelectedGenre ? " btn-primary" : "")
+                + (link == ViewBag.SelectedGenre ? " btn-primary" : ""),
+                @style="color:white; text-shadow: black 1px 1px 0, black -1px -1px 0, black -1px 1px 0, black 1px -1px 0;"
         })
     }
 
