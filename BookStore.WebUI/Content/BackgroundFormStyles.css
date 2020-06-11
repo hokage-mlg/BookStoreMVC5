@@ -1,0 +1,49 @@
+﻿.form {
+    background-color: antiquewhite;
+    border: 6px solid antiquewhite;
+    border-radius: 25px;
+}
+
+    .form h2 {
+        margin: 20px;
+    }
+
+    .form h3 {
+        margin: 20px;
+    }
+    .form p {
+        margin: 20px;
+    }
+    .form .form-horizontal h4 {
+        margin-left: 20px;
+    }
+    .form .form-footer {
+        margin: 20px;
+    }
+    .form .form-control {
+        width:450px;
+    }
+        .form .form-group label {
+            margin-left: 20px;
+        }
+    .form .form-group label {
+        margin-left: 20px;
+    }
+    .form .form-group .form-control {
+        margin-left: 20px;
+    }
+    .form .text-center{
+        margin-top:10px;
+        margin-bottom:20px;
+    }
+    .form .checkbox {
+        margin-left: 20px;
+    }
+@media all and (max-width: 800px) {
+    .form .form-control {
+        width: 70%;
+    }
+    .form .form-horizontal .form-group {
+        width: 70%;
+    }
+}

@@ -131,6 +131,7 @@
     <Content Include="App_Data\BooksData_log.ldf">
       <DependentUpon>BooksData.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\BackgroundFormStyles.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />

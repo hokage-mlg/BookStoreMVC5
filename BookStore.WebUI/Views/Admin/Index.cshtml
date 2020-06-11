@@ -6,7 +6,15 @@
     HtmlHelper.ClientValidationEnabled = false;
     HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
 }
+<style>
+    .panel-heading {
+        margin-left: 20px;
+    }
 
+    .panel-footer {
+        margin-left: 20px;
+    }
+</style>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3>Список книг</h3>
@@ -30,7 +38,7 @@
                         {
                             @Html.Hidden("BookId", item.BookId)
                             <input type="submit"
-                                   class="btn btn-default btn-xs"
+                                   class="btn btn-warning btn-xs"
                                    value="Удалить" />
                         }
                     </td>
@@ -40,6 +48,8 @@
     </div>
     <div class="panel-footer">
         @Html.ActionLink("Добавить книгу", "Create", null,
-            new { @class = "btn btn-default" })
+            new { @class = "btn btn-success" })
+        @Html.ActionLink("Вернуться на главную", "List", "Book", null,
+            new { @class = "btn btn-primary" })
     </div>
 </div>

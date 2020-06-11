@@ -12,7 +12,7 @@
 
 .nav-link {
     text-decoration: none;
-    color: #666;
+    color: ghostwhite;
     padding: 20px;
     position: relative;
     transition: all .2s ease;
@@ -21,19 +21,19 @@
     .nav-link:before {
         content: '';
         position: absolute;
-        border: 10px solid darkorange;
+        border: 10px solid ghostwhite;
         border-top-color: transparent;
         border-left-color: transparent;
         border-right-color: transparent;
         left: calc(50% - 8px);
         transition: all .2s ease;
         bottom: -5px;
-        opacity: 0;        
+        opacity: 0;
     }
 
     .nav-link:hover {
-        color: darkorange;
-        text-shadow: 0 0 1px darkorange;
+        color: ghostwhite;
+        text-shadow: 0 0 1px ghostwhite;
     }
 
         .nav-link:hover:before {
@@ -55,16 +55,16 @@
             height: 0;
             border-style: solid;
             border-width: 10px;
-            border-color: transparent transparent transparent darkorange;
+            border-color: transparent transparent transparent ghostwhite;
             position: absolute;
         }
 
     .nav-item:hover .nav-link {
-        color: #fff;
+        color: ghostwhite;
     }
 
         .nav-item:hover .nav-link::before {
-            border-left-color: darkorange;
+            border-left-color: ghostwhite;
         }
 
     .nav.navbar .dropdown:hover > .dropdown-menu {

@@ -3,7 +3,23 @@
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<style>
+    .form-control {
+        width: 500px;
+    }
 
+    .panel-body {
+        margin-left: 20px;
+    }
+
+    .panel-heading {
+        margin-left: 20px;
+    }
+
+    .panel-footer {
+        margin-left: 20px;
+    }
+</style>
 <div class="panel">
     <div class="panel-heading">
         <h3>Редактирование книги «@Model.Title»</h3>
@@ -41,9 +57,9 @@
                 }
             }
             <div class="form-group">
-                <div style="position:relative;">
+                <div style="position: relative;">
                     <label>Картинка</label>
-                    <a class='btn' href='javascript:;'>
+                    <a class='btn btn-secondary' href='javascript:;'>
                         Выберите файл...
                         <input type="file" name="Image" size="40"
                                style="position:absolute;z-index:2;top:0;
@@ -67,10 +83,7 @@
         </div>
         <div class="panel-footer">
             <input type="submit" value="Сохранить" class="btn btn-primary" />
-            @Html.ActionLink("Отменить изменения и вернуться к списку", "Index", null, new
-            {
-                @class = "btn btn-default"
-            })
+            @Html.ActionLink("Отменить изменения и вернуться к списку", "Index", null, new { @class = "btn btn-danger" })
         </div>
     }
 </div>
