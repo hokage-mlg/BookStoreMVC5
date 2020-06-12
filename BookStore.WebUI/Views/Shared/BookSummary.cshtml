@@ -1,30 +1,30 @@
 ﻿@model BookStore.Domain.Entities.Book
 
-    <div class="card card-body bg-light">
+<div class="card card-body bg-light">
 
 
-        <h3>
-            <strong>@Model.Title</strong>
-            <span class="float-right badge badge-pill badge-primary">@Model.Price.ToString("# руб")</span>
-        </h3>
+    <h3>
+        <strong>@Model.Title</strong>
+        <span class="float-right badge badge-pill badge-primary">@Model.Price.ToString("# руб")</span>
+    </h3>
 
-        <h4>
-            <span class="font-weight-normal">Автор: @Model.Author.ToString()</span>
-            <span class="float-right font-weight-light font-italic">
-                <small>
-                    Осталось: @Model.Quantity.ToString("# шт")
-                </small>
-            </span>
-        </h4>
+    <h4>
+        <span class="font-weight-normal">Автор: @Model.Author.ToString()</span>
+        <span class="float-right font-weight-light font-italic">
+            <small>
+                Осталось: @Model.Quantity.ToString("# шт")
+            </small>
+        </span>
+    </h4>
 
-        @using (Html.BeginForm("AddToCart", "Cart"))
-        {
-            <div class="float-right">
-                @Html.HiddenFor(x => x.BookId)
-                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                <input type="submit" class="btn btn-success" value="Добавить в корзину" />
-            </div>
-        }
+    @using (Html.BeginForm("AddToCart", "Cart"))
+    {
+        <div class="float-right">
+            @Html.HiddenFor(x => x.BookId)
+            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+            <input type="submit" class="btn btn-success" value="Добавить в корзину" />
+        </div>
+    }
     <p>
         @if (Model.ImageData != null)
         {
@@ -34,4 +34,4 @@
         }
         @Model.Description
     </p>
-    </div>
+</div>

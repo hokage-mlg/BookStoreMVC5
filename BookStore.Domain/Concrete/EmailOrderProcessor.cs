@@ -39,7 +39,7 @@ namespace BookStore.Domain.Concrete
                     smtpClient.PickupDirectoryLocation = emailSettings.FileLocation;
                     smtpClient.EnableSsl = false;
                 }
-                StringBuilder body = new StringBuilder()
+                var body = new StringBuilder()
                     .AppendLine("Новый заказ обработан")
                     .AppendLine("---")
                     .AppendLine("Товары:");
@@ -62,7 +62,7 @@ namespace BookStore.Domain.Concrete
                     .AppendLine("---")
                     .AppendFormat("Подарочная упаковка: {0}",
                         deliveryDetails.GiftWrap ? "Да" : "Нет");
-                MailMessage mailMessage = new MailMessage(
+                var mailMessage = new MailMessage(
                                        emailSettings.MailFromAddress,
                                        emailSettings.MailToAddress,
                                        "Новый заказ отправлен!",

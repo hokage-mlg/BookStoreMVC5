@@ -14,7 +14,7 @@ namespace BookStore.Domain.Concrete
                 context.DeliveryDetails.Add(deliveryDetails);
             else
             {
-                DeliveryDetails dbEntry = context.DeliveryDetails.Find(deliveryDetails.OrderId);
+                var dbEntry = context.DeliveryDetails.Find(deliveryDetails.OrderId);
                 if (dbEntry != null)
                 {
                     dbEntry.FullName = deliveryDetails.FullName;
@@ -31,7 +31,7 @@ namespace BookStore.Domain.Concrete
         }
         public DeliveryDetails DeleteDeliveryDetails(int orderId)
         {
-            DeliveryDetails dbEntry = context.DeliveryDetails.Find(orderId);
+            var dbEntry = context.DeliveryDetails.Find(orderId);
             if (dbEntry != null)
             {
                 context.DeliveryDetails.Remove(dbEntry);

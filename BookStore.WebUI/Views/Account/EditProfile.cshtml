@@ -1,0 +1,40 @@
+﻿@model BookStore.Domain.Entities.User
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Редактирование профиля</h3>
+    </div>
+
+    @using (Html.BeginForm("EditProfile", "Account",
+        FormMethod.Post))
+    {
+<div class="panel-body">
+    @Html.HiddenFor(m => m.UserId)
+    @Html.HiddenFor(m => m.Role)
+    @Html.HiddenFor(m => m.RoleId)
+    @Html.HiddenFor(m => m.Password)
+    @foreach (var property in ViewData.ModelMetadata.Properties)
+    {
+        switch (property.PropertyName)
+        {
+            case "UserId":
+            case "RoleId":
+            case "Role":
+            case "Password":
+                break;
+            default:
+                <div class="form-group">
+                    <label>@(property.DisplayName ?? property.PropertyName)</label>
+                    @Html.TextBox(property.PropertyName, null,
+                        new { @class = "form-control" })
+                    @Html.ValidationMessage(property.PropertyName)
+                </div>
+                break;
+        }
+    }
+</div>
+        <div class="panel-footer">
+            <input type="submit" value="Сохранить" class="btn btn-primary" />
+            @Html.ActionLink("Отменить изменения и вернуться к списку", "Index", null, new { @class = "btn btn-danger" })
+        </div>
+    }
+</div>

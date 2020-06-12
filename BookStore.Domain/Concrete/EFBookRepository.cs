@@ -14,7 +14,7 @@ namespace BookStore.Domain.Concrete
                 context.Books.Add(book);
             else
             {
-                Book dbEntry = context.Books.Find(book.BookId);
+                var dbEntry = context.Books.Find(book.BookId);
                 if (dbEntry != null)
                 {
                     dbEntry.Title = book.Title;
@@ -31,7 +31,7 @@ namespace BookStore.Domain.Concrete
         }
         public Book DeleteBook(int bookId)
         {
-            Book dbEntry = context.Books.Find(bookId);
+            var dbEntry = context.Books.Find(bookId);
             if (dbEntry != null)
             {
                 context.Books.Remove(dbEntry);

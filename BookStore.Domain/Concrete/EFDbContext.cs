@@ -23,7 +23,8 @@ namespace BookStore.Domain.Concrete
                 UserId = 1,
                 Email = "somemail@gmail.com",
                 Password = "123",
-                Age = 20,
+                Name = "Никита",
+                Age = 21,
                 RoleId = 1
             });
             base.Seed(context);

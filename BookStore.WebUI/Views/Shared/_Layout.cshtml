@@ -13,8 +13,8 @@
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <title>@ViewBag.Title|BookStore</title>
     <style>
-        body{
-  background-image: url("../..//Content/Background.png")
+        body {
+            background-image: url("../..//Content/Background.png")
         }
     </style>
     <script>
@@ -66,28 +66,25 @@
             @if (User.IsInRole("admin") || User.IsInRole("user"))
             {
                 <div class="dropdown form-inline mt-2 mt-md-0" style="margin-right:110px">
-                    <a class="btn btn-outline-light" href="@Url.Action("Login","Account")" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <a class="btn btn-outline-light" href="@Url.Action("Index","Account")" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <i class="far fa-user-circle"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">Профиль</a>
                         <a class="dropdown-item" href="#">Заказы</a>
                         <a class="dropdown-item" href="#">Сообщения</a>
-                        <a class="dropdown-item" href="@Url.Action("Logout","Account")" style="color:red">Выйти</a>
+                        <a class="dropdown-item" href="@Url.Action("Logout","Auth")" style="color:red">Выйти</a>
                     </div>
                 </div>
             }
             else
             {
                 <form class="form-inline mt-2 mt-md-0" style="margin-right:110px">
-                    <a class="btn btn-outline-light my-2 my-sm-0" href="@Url.Action("Login","Account")"><i class="far fa-user-circle"></i></a>
+                    <a class="btn btn-outline-light my-2 my-sm-0" href="@Url.Action("Login","Auth")"><i class="far fa-user-circle"></i></a>
                 </form>
             }
         </div>
     </nav>
-
-
-    <p>@User.Identity.Name</p>
     <div class="d-block d-sm-none">
         @Html.Action("SearchPanel", "Nav", new { horizontalNav = true })
         @Html.Action("Menu", "Nav", new { horizontalNav = true })

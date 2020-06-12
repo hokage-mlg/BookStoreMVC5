@@ -1,76 +1,68 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using BookStore.WebUI.Models;
+﻿using System;
+using System.Collections.Generic;
 using BookStore.Domain.Entities;
-using BookStore.Domain.Concrete;
+using BookStore.Domain.Abstract;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 using System.Web.Security;
 
 namespace BookStore.WebUI.Controllers
 {
     public class AccountController : Controller
     {
-        public ActionResult Register() => View();
-        public ActionResult Logout()=>View();
-        public ActionResult Profile() => View();
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterViewModel model)
+        public IUserRepository repository;
+        public AccountController(IUserRepository repo) => repository = repo;
+        public ViewResult ProfileInfoChanges() => View();
+        public ActionResult Index()
         {
-            if (ModelState.IsValid)
-            {
-                User user = null;
-                using (EFDbContext db = new EFDbContext())
-                    user = db.Users.FirstOrDefault(u => u.Email == model.UserName);
-                if (user == null)
-                {
-                    using (EFDbContext db = new EFDbContext())
-                    {
-                        db.Users.Add(new User
-                        {
-                            Email = model.UserName,
-                            Password = model.Password,
-                            Age = model.Age,
-                            RoleId = 2
-                        });
-                        db.SaveChanges();
-                        user = db.Users.Where(u => u.Email == model.UserName && u.Password == model.Password).FirstOrDefault();
-                    }
-                    if (user != null)
-                    {
-                        FormsAuthentication.SetAuthCookie(model.UserName, true);
-                        return RedirectToAction("List", "Book");
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Пользователь с таким логином уже существует");
-                }
-            }
-            return View(model);
+            var user = repository.Users.Where(u => u.Email == User.Identity.Name).FirstOrDefault();
+            return View(user);
         }
-        public ActionResult Login() => View();
-
+        public ViewResult EditProfile(int userId)
+        {
+            var user = repository.Users.FirstOrDefault(u => u.UserId == userId);
+            return View(user);
+        }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel model)
+        public ActionResult EditProfile(User user)
         {
             if (ModelState.IsValid)
             {
-                User user = null;
-                using (EFDbContext db = new EFDbContext())
-                    user = db.Users
-                        .FirstOrDefault(u => u.Email == model.UserName 
-                        && u.Password == model.Password);
-                if (user != null)
-                {
-                    FormsAuthentication.SetAuthCookie(model.UserName, true);
-                    return RedirectToAction("List","Book");
-                }
-                else
-                    ModelState.AddModelError("", "Пользователя с таким логином и паролем нет");
+                repository.SaveUser(user);
+                TempData["message"] = string.Format("Изменения в профиле были сохранены");
+                FormsAuthentication.SignOut();
+                return RedirectToAction("ProfileInfoChanges");
             }
-            return View(model);
+            else
+                return View(user);
+        }
+        public ViewResult EditPassword(int userId)
+        {
+            var user = repository.Users.FirstOrDefault(u => u.UserId == userId);
+            return View(user);
+        }
+        [HttpPost]
+        public ActionResult EditPassword(int userId, string oldPass, string newPass)
+        {
+            var user = repository.Users.FirstOrDefault(u => u.UserId == userId);
+            if (ModelState.IsValid)
+            {
+                if (oldPass == newPass)
+                    ModelState.AddModelError("", "Текущий и новый пароли. Изменение невозможно.");
+                else if (user.Password == oldPass)
+                {
+                    repository.ChangePassword(user, newPass);
+                    TempData["message"] = string.Format("Изменения в профиле были сохранены");
+                    FormsAuthentication.SignOut();
+                    return RedirectToAction("ProfileInfoChanges");
+                }               
+                else
+                    ModelState.AddModelError("", "Вы ввели неверный текущий пароль. Изменение невозможно.");
+                return View(user);
+            }
+            else
+                return View(user);
         }
     }
 }

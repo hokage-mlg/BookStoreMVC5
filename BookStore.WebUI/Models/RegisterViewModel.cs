@@ -12,6 +12,9 @@ namespace BookStore.WebUI.Models
         [Display(Name = "Пароль")]
         [Required(ErrorMessage = "Пожалуйста, введите ваш пароль")]
         public string Password { get; set; }
+        [Display(Name = "Имя")]
+        [Required(ErrorMessage = "Пожалуйста, введите ваше имя")]
+        public string Name { get; set; }
         [Display(Name = "Возраст")]
         [Required(ErrorMessage = "Пожалуйста, введите ваш возраст")]
         [RegularExpression(@"^(?:1[01][0-9]|120|1[4-9]|[2-9][0-9])$",

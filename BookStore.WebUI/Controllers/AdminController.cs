@@ -35,7 +35,6 @@ namespace BookStore.WebUI.Controllers
             }
             else
                 return View(book);
-
         }
         public ViewResult Create() => View("Edit", new Book());
         [HttpPost]
