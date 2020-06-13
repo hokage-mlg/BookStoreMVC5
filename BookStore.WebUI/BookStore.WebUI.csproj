@@ -281,6 +281,7 @@
     <Compile Include="Models\CartIndexViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
+    <Compile Include="Models\PurchasesListViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\UserIndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -328,6 +329,7 @@
     <Content Include="Views\Account\EditProfile.cshtml" />
     <Content Include="Views\Account\ProfileInfoChanges.cshtml" />
     <Content Include="Views\Account\EditPassword.cshtml" />
+    <Content Include="Views\Account\Purchases.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<BookStore.Domain.Entities.Purchase>
+@using BookStore.Domain.Abstract;
+@using BookStore.Domain.Concrete;
+@{
+    EFDbContext db = new EFDbContext();
+
+}
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Книга
+        </th>
+        <th>
+            Количество
+        </th>
+        <th>
+            Цена
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @db.Books.Where(b => b.BookId == item.BookId).FirstOrDefault().Title.ToString()            
+            </td>
+            <td>
+                @item.Quantity
+            </td>
+            <td>
+                @{
+                    var total = db.Books.Where(b => b.BookId == item.BookId).FirstOrDefault().Price * item.Quantity;
+                }
+                @total
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.OrderLineId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.OrderLineId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.OrderLineId })
+            </td>
+        </tr>
+    }
+
+</table>
