@@ -1,48 +1,40 @@
 ﻿@model IEnumerable<BookStore.Domain.Entities.Purchase>
-@using BookStore.Domain.Abstract;
 @using BookStore.Domain.Concrete;
 @{
-    EFDbContext db = new EFDbContext();
-
+    ViewBag.Title = "Мои заказы";
+    var db = new EFDbContext();
 }
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<link href="~/Content/BackgroundFormStyles.css" rel="stylesheet" />
 <table class="table">
     <tr>
         <th>
-            Книга
+            Номер заказа
         </th>
         <th>
-            Количество
+            Город
         </th>
         <th>
-            Цена
+            Получатель
         </th>
         <th></th>
     </tr>
-
-    @foreach (var item in Model)
+    @foreach (var item in Model.GroupBy(p => p.OrderId).Select(g => g.First()).ToList())
     {
         <tr>
             <td>
-                @db.Books.Where(b => b.BookId == item.BookId).FirstOrDefault().Title.ToString()            
+                @item.OrderId
             </td>
             <td>
-                @item.Quantity
+                @db.DeliveryDetails.Find(item.OrderId).City
             </td>
             <td>
-                @{
-                    var total = db.Books.Where(b => b.BookId == item.BookId).FirstOrDefault().Price * item.Quantity;
-                }
-                @total
+                @db.DeliveryDetails.Find(item.OrderId).FullName
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.OrderLineId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.OrderLineId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.OrderLineId })
+            <td>               
+                    @Ajax.ActionLink("Показать детали", "PurchaseDetails", new {orderId=item.OrderId},
+                                                 new AjaxOptions { UpdateTargetId = "showDetails" })               
             </td>
         </tr>
     }
-
 </table>
+<div id="showDetails"></div>

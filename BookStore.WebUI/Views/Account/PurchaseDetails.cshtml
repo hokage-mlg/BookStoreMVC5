@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BookStore.Domain.Entities.Purchase>
+@using BookStore.Domain.Concrete;
+@{
+    var db = new EFDbContext();
+    decimal totalPrice = 0;
+    int deliveryDetails = Model.Select(d => d.OrderId).FirstOrDefault();
+}
+<table class="table">
+    <tr>
+        <th>Книга</th>
+        <th>Количество</th>
+        <th>Цена</th>
+        <th>Общая цена</th>
+        <th>
+            @Ajax.ActionLink("Информация о доставке", "DeliveryDetails", new { orderId=deliveryDetails },
+                                                     new AjaxOptions { UpdateTargetId = "showDeliveryDetails" })
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @db.Books.Find(item.BookId).Title
+            </td>
+            <td>
+                @item.Quantity
+            </td>
+            <td>
+                @db.Books.Find(item.BookId).Price.ToString("# руб.")
+            </td>
+            <td>
+                @{
+                    totalPrice += db.Books.Find(item.BookId).Price * item.Quantity;
+                }
+                @((item.Quantity * db.Books.Find(item.BookId).Price).ToString("# руб"))
+            </td>
+        </tr>
+    }
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right" style="font-weight:bold">Итого:</td>
+            <td class="text-center">
+                @totalPrice.ToString("# руб")
+            </td>
+        </tr>
+    </tfoot>
+</table>
+<div id="showDeliveryDetails"></div>

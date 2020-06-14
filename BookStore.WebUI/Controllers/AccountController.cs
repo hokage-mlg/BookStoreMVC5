@@ -81,5 +81,15 @@ namespace BookStore.WebUI.Controllers
             var purchases = purchaseRepository.Purchases.Where(p => p.UserId == userId);     
             return View(purchases);
         }
+        public ActionResult PurchaseDetails(int orderId)
+        {
+            var purchases = purchaseRepository.Purchases.Where(p => p.OrderId == orderId);
+            return PartialView(purchases);
+        }
+        public ActionResult DeliveryDetails(int orderId)
+        {
+            var deliveryDetails = deliveryDetailsRepository.DeliveryDetails.Where(d=>d.OrderId== orderId);
+            return PartialView(deliveryDetails);
+        }
     }
 }

@@ -41,38 +41,54 @@
     .form .checkbox {
         margin-left: 20px;
     }
+
 .card {
     background-color: antiquewhite;
     border: 6px solid antiquewhite;
     border-radius: 25px;
 }
+
 .panel {
     background-color: antiquewhite;
     border: 6px solid antiquewhite;
     border-radius: 25px;
 }
+
     .panel .panel-heading {
         margin: 20px;
     }
+
     .panel .panel-body {
         margin-left: 20px;
     }
-    .panel .panel-body .form-control {
-        width: 350px;
-    }
+
+        .panel .panel-body .form-control {
+            width: 350px;
+        }
+
     .panel .panel-footer {
         margin: 20px;
     }
+.table {
+    background-color: antiquewhite;
+}
+    .table tr {
+        text-align: center;
+    }
+    .table tr td {
+        text-align: center;
+    }
 
-    @media all and (max-width: 800px) {
-        .form .form-control {
+@media all and (max-width: 800px) {
+    .form .form-control {
         width: 70%;
     }
 
     .form .form-horizontal .form-group {
         width: 70%;
     }
-        .panel .panel-body .form-control {
-            width: 70%;
-        }
+
+    .panel .panel-body .form-control {
+        width: 70%;
+    }
 }
