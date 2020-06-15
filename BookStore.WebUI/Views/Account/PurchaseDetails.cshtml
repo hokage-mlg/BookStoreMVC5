@@ -3,7 +3,7 @@
 @{
     var db = new EFDbContext();
     decimal totalPrice = 0;
-    int deliveryDetails = Model.Select(d => d.OrderId).FirstOrDefault();
+    int deliveryDetails = Model.Select(d => d.DeliveryDetailsId).FirstOrDefault();
 }
 <table class="table">
     <tr>
@@ -12,7 +12,7 @@
         <th>Цена</th>
         <th>Общая цена</th>
         <th>
-            @Ajax.ActionLink("Информация о доставке", "DeliveryDetails", new { orderId=deliveryDetails },
+            @Ajax.ActionLink("Информация о доставке", "DeliveryDetails", new {deliveryDetailsId = deliveryDetails },
                                                      new AjaxOptions { UpdateTargetId = "showDeliveryDetails" })
         </th>
     </tr>

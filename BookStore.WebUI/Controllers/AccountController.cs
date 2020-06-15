@@ -81,15 +81,24 @@ namespace BookStore.WebUI.Controllers
             var purchases = purchaseRepository.Purchases.Where(p => p.UserId == userId);     
             return View(purchases);
         }
-        public ActionResult PurchaseDetails(int orderId)
+        public ActionResult PurchaseDetails(int deliveryDetailsId)
         {
-            var purchases = purchaseRepository.Purchases.Where(p => p.OrderId == orderId);
+            var purchases = purchaseRepository.Purchases.Where(p => p.DeliveryDetailsId == deliveryDetailsId);
             return PartialView(purchases);
         }
-        public ActionResult DeliveryDetails(int orderId)
+        public ActionResult DeliveryDetails(int deliveryDetailsId)
         {
-            var deliveryDetails = deliveryDetailsRepository.DeliveryDetails.Where(d=>d.OrderId== orderId);
+            var deliveryDetails = deliveryDetailsRepository.DeliveryDetails.Where(d=>d.DeliveryDetailsId == deliveryDetailsId).FirstOrDefault();
             return PartialView(deliveryDetails);
+        }
+        [HttpPost]
+        public RedirectToRouteResult ConfirmReceipt(int deliveryDetailsId, string returnUrl, int userId)
+        {
+            var purchases = purchaseRepository.Purchases.Where(p => p.DeliveryDetailsId == deliveryDetailsId).ToList();
+            if (purchases != null)
+                foreach (var p in purchases)
+                    purchaseRepository.ConfirmReceipt(p.OrderLineId);          
+            return RedirectToAction("Purchases", new { returnUrl, userId });
         }
     }
 }

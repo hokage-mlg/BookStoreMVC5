@@ -9,7 +9,6 @@
     <h3>
         <strong>Здравствуйте, @Model.Name!</strong>
     </h3>
-
     <div class="line">
         <h4>
             <span class="font-weight-normal">Логин: @Model.Email</span>
@@ -25,9 +24,6 @@
             
         </h4>
     </div>
-
-    
-
     <div class="panel-footer">
         @Html.ActionLink("Редактировать профиль", "EditProfile", new { Model.UserId }, new { @class = "btn btn-primary" })
         @Html.ActionLink("Изменить пароль", "EditPassword", new { Model.UserId }, new { @class = "btn btn-warning" })
@@ -35,3 +31,4 @@
             new { @class = "btn btn-secondary" })
     </div>
 </div>
+<div id="showEditPassword"></div>

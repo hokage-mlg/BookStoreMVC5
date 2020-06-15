@@ -71,12 +71,17 @@
     }
 .table {
     background-color: antiquewhite;
+    border-spacing: 0;
+    border-radius: 25px;
 }
     .table tr {
         text-align: center;
     }
     .table tr td {
         text-align: center;
+    }
+    .table th {
+        border-top: none;
     }
 
 @media all and (max-width: 800px) {

@@ -23,7 +23,7 @@
         foreach (var property in ViewData.ModelMetadata.Properties)
         {
             if (property.PropertyName != "FullName" && property.PropertyName != "GiftWrap" &&
-                property.PropertyName != "OrderId")
+                property.PropertyName != "DeliveryDetailsId")
             {
                 <div class="form-group">
                     <label>@(property.DisplayName ?? property.PropertyName)</label>

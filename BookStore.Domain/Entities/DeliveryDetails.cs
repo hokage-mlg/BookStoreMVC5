@@ -9,8 +9,8 @@ namespace BookStore.Domain.Entities
     {
         [HiddenInput(DisplayValue = false)]
         [Key]
-        public int OrderId { get; set; }
-        [Display(Name = "Фамилия, имя, отчество получателя")]
+        public int DeliveryDetailsId { get; set; }
+        [Display(Name = "Ф.И.О. получателя")]
         [Required(ErrorMessage = "Пожалуйста, укажите Ф.И.О.")]
         public string FullName { get; set; }
         [Display(Name ="Почтовый индекс")]

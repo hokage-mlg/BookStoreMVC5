@@ -24,6 +24,7 @@
             <tr>
                 <th class="text-right">ID</th>
                 <th>Название</th>
+                <th class="text-right">Количество</th>
                 <th class="text-right">Цена</th>
                 <th class="text-center">Действия</th>
             </tr>
@@ -32,6 +33,7 @@
                 <tr>
                     <td class="text-right">@item.BookId</td>
                     <td>@Html.ActionLink(item.Title, "Edit", new { item.BookId })</td>
+                    <td class="text-right">@item.Quantity</td>
                     <td class="text-right">@item.Price.ToString("# руб")</td>
                     <td class="text-center">
                         @using (Html.BeginForm("Delete", "Admin"))

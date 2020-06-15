@@ -16,8 +16,9 @@ namespace BookStore.Domain.Concrete
                 {
                     BookId = line.Book.BookId,
                     Quantity = line.Quantity,
-                    OrderId = deliveryDetails.OrderId,
-                    UserId = user.UserId
+                    DeliveryDetailsId = deliveryDetails.DeliveryDetailsId,
+                    UserId = user.UserId,
+                    DeliveryStatus = "Отправлен"
                 };
                 context.Purchases.Add(purchase);
                 var dbEntry = context.Books.Find(line.Book.BookId);
@@ -25,6 +26,15 @@ namespace BookStore.Domain.Concrete
                     dbEntry.Quantity -= line.Quantity;
             }
             context.SaveChanges();
+        }
+        public void ConfirmReceipt(int orderLineId)
+        {
+            var dbEntry = context.Purchases.Find(orderLineId);
+            if (dbEntry != null)
+            {
+                dbEntry.DeliveryStatus = "Получен";
+                context.SaveChanges();
+            }
         }
     }
 }

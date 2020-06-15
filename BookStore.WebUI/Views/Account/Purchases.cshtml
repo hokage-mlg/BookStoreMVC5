@@ -11,30 +11,46 @@
             Номер заказа
         </th>
         <th>
-            Город
+            Статус заказа
         </th>
         <th>
             Получатель
         </th>
         <th></th>
+        <th></th>
     </tr>
-    @foreach (var item in Model.GroupBy(p => p.OrderId).Select(g => g.First()).ToList())
+    @foreach (var item in Model.GroupBy(p => p.DeliveryDetailsId).Select(g => g.First()).ToList())
     {
         <tr>
             <td>
-                @item.OrderId
+                @item.DeliveryDetailsId
             </td>
             <td>
-                @db.DeliveryDetails.Find(item.OrderId).City
+                @item.DeliveryStatus
             </td>
             <td>
-                @db.DeliveryDetails.Find(item.OrderId).FullName
+                @db.DeliveryDetails.Find(item.DeliveryDetailsId).FullName
             </td>
-            <td>               
-                    @Ajax.ActionLink("Показать детали", "PurchaseDetails", new {orderId=item.OrderId},
-                                                 new AjaxOptions { UpdateTargetId = "showDetails" })               
+            <td>
+                @Ajax.ActionLink("Показать детали", "PurchaseDetails", new { item.DeliveryDetailsId },
+                                             new AjaxOptions { UpdateTargetId = "showDetails" })
             </td>
+            @if (item.DeliveryStatus == "Отправлен")
+            {
+                <td>
+                    @using (Html.BeginForm("ConfirmReceipt", "Account"))
+                    {
+                        <div class="float-right">
+                            @Html.Hidden("deliveryDetailsId", item.DeliveryDetailsId)
+                            @Html.Hidden("userId", item.UserId)
+                            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                            <input type="submit" class="btn btn-success" value="Подтвердить получение" />
+                        </div>
+                    }
+                </td>
+            }
         </tr>
     }
 </table>
 <div id="showDetails"></div>
+<a href='javascript:history.go(-1)' class="btn btn-primary">Перейти к профилю</a>

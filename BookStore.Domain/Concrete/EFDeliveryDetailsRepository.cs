@@ -10,11 +10,11 @@ namespace BookStore.Domain.Concrete
         public IEnumerable<DeliveryDetails> DeliveryDetails => context.DeliveryDetails;
         public void SaveDeliveryDetails(DeliveryDetails deliveryDetails)
         {
-            if (deliveryDetails.OrderId == 0)
+            if (deliveryDetails.DeliveryDetailsId == 0)
                 context.DeliveryDetails.Add(deliveryDetails);
             else
             {
-                var dbEntry = context.DeliveryDetails.Find(deliveryDetails.OrderId);
+                var dbEntry = context.DeliveryDetails.Find(deliveryDetails.DeliveryDetailsId);
                 if (dbEntry != null)
                 {
                     dbEntry.FullName = deliveryDetails.FullName;
