@@ -1,17 +1,11 @@
 ﻿@{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/ErrorStyles.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.4.1.js"></script>
-    <script src="~/Scripts/jquery.validate.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-    <title>@ViewBag.Title</title>
+    <title>@ViewBag.Title|BookStore</title>
 </head>
 <body>
     <div>
@@ -23,3 +17,12 @@
     </div>
 </body>
 </html>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/ErrorStyles.css" rel="stylesheet" />
+<link href="~/Content/AdminLayoutStyles.css" rel="stylesheet" />
+<script src="https://kit.fontawesome.com/a6998d7322.js" crossorigin="anonymous"></script>
+<link rel="shortcut icon" href="~/Content/favicon.ico" type="image/x-icon">
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+@Scripts.Render("~/scripts/jquery-3.4.1.js")
+@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")

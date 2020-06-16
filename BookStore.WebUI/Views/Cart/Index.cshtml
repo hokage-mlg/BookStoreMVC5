@@ -1,13 +1,7 @@
 ﻿@model BookStore.WebUI.Models.CartIndexViewModel
-<link href="~/Content/BackgroundFormStyles.css" rel="stylesheet" />
 @{
-    ViewBag.Title = "BookStore: ваша корзина";
+    ViewBag.Title = "Ваша корзина";
 }
-<style>
-    #cartTable td {
-        vertical-align: middle;
-    }
-</style>
 <div class="form">
     <h2>Ваша корзина</h2>
     @if (Model.Cart.Lines.Any())
@@ -57,7 +51,6 @@
         <h1 class="text-center">Нет товаров!</h1>
         <br />
     }
-
     <div class="text-center">
         <a class="btn btn-primary" href="@Model.ReturnUrl">Продолжить покупки</a>
         @if (Model.Cart.Lines.Any())

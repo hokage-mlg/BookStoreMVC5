@@ -46,7 +46,12 @@
     background-color: antiquewhite;
     border: 6px solid antiquewhite;
     border-radius: 25px;
+    margin-bottom: 20px;
 }
+
+    .card .list-group .list-group-item {
+        background-color: antiquewhite;
+    }
 
 .panel {
     background-color: antiquewhite;
@@ -69,20 +74,28 @@
     .panel .panel-footer {
         margin: 20px;
     }
+
 .table {
     background-color: antiquewhite;
     border-spacing: 0;
     border-radius: 25px;
 }
+
     .table tr {
         text-align: center;
     }
-    .table tr td {
-        text-align: center;
-    }
+
+        .table tr td {
+            text-align: center;
+        }
+
     .table th {
         border-top: none;
     }
+
+#cartTable td {
+    vertical-align: middle;
+}
 
 @media all and (max-width: 800px) {
     .form .form-control {

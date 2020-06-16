@@ -9,5 +9,6 @@ namespace BookStore.Domain.Abstract
         IEnumerable<User> Users { get; }
         void SaveUser(User user);
         void ChangePassword(User user, string newPass);
+        User GiveRole(int userId, int roleId);
     }
 }

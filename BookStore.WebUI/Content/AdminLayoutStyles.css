@@ -1,0 +1,23 @@
+﻿.form-control {
+    width: 500px;
+}
+
+.panel-body {
+    margin-left: 20px;
+}
+
+.panel-heading {
+    margin-left: 20px;
+}
+
+.panel-footer {
+    margin-left: 20px;
+}
+
+.panel-body .table tr th {
+    text-align: center
+}
+
+.panel-body .table tr td {
+    text-align: center
+}

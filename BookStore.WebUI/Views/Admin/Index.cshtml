@@ -1,57 +1,12 @@
-﻿@model IEnumerable<BookStore.Domain.Entities.Book>
-
-@{
-    ViewBag.Title = "Админ панель: редактирование товара";
+﻿@{
+    ViewBag.Title = "Админ. панель";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    HtmlHelper.ClientValidationEnabled = false;
-    HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
 }
-<style>
-    .panel-heading {
-        margin-left: 20px;
-    }
-
-    .panel-footer {
-        margin-left: 20px;
-    }
-</style>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3>Список книг</h3>
-    </div>
-    <div class="panel-body">
-        <table class="table table-striped table-condensed table-bordered">
-            <tr>
-                <th class="text-right">ID</th>
-                <th>Название</th>
-                <th class="text-right">Количество</th>
-                <th class="text-right">Цена</th>
-                <th class="text-center">Действия</th>
-            </tr>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td class="text-right">@item.BookId</td>
-                    <td>@Html.ActionLink(item.Title, "Edit", new { item.BookId })</td>
-                    <td class="text-right">@item.Quantity</td>
-                    <td class="text-right">@item.Price.ToString("# руб")</td>
-                    <td class="text-center">
-                        @using (Html.BeginForm("Delete", "Admin"))
-                        {
-                            @Html.Hidden("BookId", item.BookId)
-                            <input type="submit"
-                                   class="btn btn-warning btn-xs"
-                                   value="Удалить" />
-                        }
-                    </td>
-                </tr>
-            }
-        </table>
-    </div>
-    <div class="panel-footer">
-        @Html.ActionLink("Добавить книгу", "Create", null,
-            new { @class = "btn btn-success" })
-        @Html.ActionLink("Вернуться на главную", "List", "Book", null,
-            new { @class = "btn btn-primary" })
-    </div>
-</div>
+@Ajax.ActionLink("Список книг", "BookList", null, new AjaxOptions { UpdateTargetId = "showBookList" }, new { @class = "btn btn-primary" })
+@Ajax.ActionLink("Список пользователей", "UserList", null, new AjaxOptions { UpdateTargetId = "showUserList" }, new { @class = "btn btn-primary" })
+@Ajax.ActionLink("Список заказов", "PurchaseList", null, new AjaxOptions { UpdateTargetId = "showPurchaseList" }, new { @class = "btn btn-primary" })
+@Html.ActionLink("Вернуться на главную", "List", "Book", null,
+           new { @class = "btn btn-primary" })
+<div id="showBookList"></div>
+<div id="showUserList"></div>
+<div id="showPurchaseList"></div>

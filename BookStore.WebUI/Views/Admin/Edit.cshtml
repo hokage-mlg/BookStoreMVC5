@@ -1,30 +1,11 @@
 ﻿@model BookStore.Domain.Entities.Book
-
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<style>
-    .form-control {
-        width: 500px;
-    }
-
-    .panel-body {
-        margin-left: 20px;
-    }
-
-    .panel-heading {
-        margin-left: 20px;
-    }
-
-    .panel-footer {
-        margin-left: 20px;
-    }
-</style>
 <div class="panel">
     <div class="panel-heading">
         <h3>Редактирование книги «@Model.Title»</h3>
     </div>
-
     @using (Html.BeginForm("Edit", "Admin",
         FormMethod.Post, new { enctype = "multipart/form-data" }))
     {

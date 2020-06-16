@@ -4,7 +4,6 @@
     HtmlHelper.ClientValidationEnabled = false;
     HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
 }
-<link href="~/Content/BackgroundFormStyles.css" rel="stylesheet" />
 <div class="card card-body">
     <h3>
         <strong>Здравствуйте, @Model.Name!</strong>
@@ -21,12 +20,12 @@
     <div class="line">
         <h4>
             <span class="font-weight-normal">Возраст: @Model.Age</span>
-            
         </h4>
     </div>
     <div class="panel-footer">
         @Html.ActionLink("Редактировать профиль", "EditProfile", new { Model.UserId }, new { @class = "btn btn-primary" })
         @Html.ActionLink("Изменить пароль", "EditPassword", new { Model.UserId }, new { @class = "btn btn-warning" })
+        <a class="btn btn-danger" href="@Url.Action("Logout","Auth")">Выйти</a>
         @Html.ActionLink("Вернуться на главную", "List", "Book", null,
             new { @class = "btn btn-secondary" })
     </div>

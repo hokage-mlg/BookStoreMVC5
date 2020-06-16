@@ -131,6 +131,7 @@
     <Content Include="App_Data\BooksData_log.ldf">
       <DependentUpon>BooksData.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\AdminLayoutStyles.css" />
     <Content Include="Content\BackgroundFormStyles.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -314,7 +315,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\BookList.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Nav\BookSearch.cshtml" />
@@ -333,6 +334,8 @@
     <Content Include="Views\Account\Purchases.cshtml" />
     <Content Include="Views\Account\PurchaseDetails.cshtml" />
     <Content Include="Views\Account\DeliveryDetails.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\UserList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

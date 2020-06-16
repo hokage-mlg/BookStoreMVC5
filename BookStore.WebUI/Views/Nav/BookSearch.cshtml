@@ -1,7 +1,4 @@
 ﻿@model IEnumerable<BookStore.Domain.Entities.Book>
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 @foreach (var item in Model)
 {
     @Html.Partial("BookSummary", item)

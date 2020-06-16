@@ -12,7 +12,7 @@ namespace BookStore.WebUI.Models
         public int CurrentPage { get; set; }
         public int TotalPages
         {
-            get => (int)Math.Ceiling((decimal)TotalItems / ItemsPerPage);       
+            get => (int)Math.Ceiling((decimal)TotalItems / ItemsPerPage);
         }
     }
 }

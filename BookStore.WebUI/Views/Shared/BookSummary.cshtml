@@ -1,13 +1,9 @@
 ﻿@model BookStore.Domain.Entities.Book
-
-<div class="card card-body bg-light">
-
-
+<div class="card card-body">
     <h3>
         <strong>@Model.Title</strong>
         <span class="float-right badge badge-pill badge-primary">@Model.Price.ToString("# руб")</span>
     </h3>
-
     <h4>
         <span class="font-weight-normal">Автор: @Model.Author.ToString()</span>
         <span class="float-right font-weight-light font-italic">
@@ -16,7 +12,6 @@
             </small>
         </span>
     </h4>
-
     @using (Html.BeginForm("AddToCart", "Cart"))
     {
         <div class="float-right">

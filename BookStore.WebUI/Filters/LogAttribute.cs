@@ -10,13 +10,13 @@ namespace BookStore.WebUI.Filters
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var request = filterContext.HttpContext.Request;
-            Visitor visitor = new Visitor()
+            var visitor = new Visitor()
             {
                 Ip = request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? request.UserHostAddress,
                 Url = request.RawUrl,
                 Date = DateTime.UtcNow
             };
-            using (EFDbContext db = new EFDbContext())
+            using (var db = new EFDbContext())
             {
                 db.Visitors.Add(visitor);
                 db.SaveChanges();

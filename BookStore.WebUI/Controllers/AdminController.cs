@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BookStore.Domain.Entities;
@@ -10,12 +8,21 @@ namespace BookStore.WebUI.Controllers
 {
     public class AdminController : Controller
     {
-        public IBookRepository repository;
-        public AdminController(IBookRepository repo) => repository = repo;
-        public ViewResult Index() => View(repository.Books);
+        public IBookRepository bookRepository;
+        public IUserRepository userRepository;
+        public IOrderProcessorDb purchaseRepository;
+        public AdminController(IBookRepository bookRepo, IUserRepository userRepo, IOrderProcessorDb purchaseRepo)
+        {
+            bookRepository = bookRepo;
+            userRepository = userRepo;
+            purchaseRepository = purchaseRepo;
+        }
+        public ViewResult Index() => View();
+        public ActionResult BookList() => PartialView(bookRepository.Books);
+        public ActionResult UserList() => PartialView(userRepository.Users);
         public ViewResult Edit(int bookId)
         {
-            Book book = repository.Books.FirstOrDefault(b => b.BookId == bookId);
+            var book = bookRepository.Books.FirstOrDefault(b => b.BookId == bookId);
             return View(book);
         }
         [HttpPost]
@@ -29,9 +36,9 @@ namespace BookStore.WebUI.Controllers
                     book.ImageData = new byte[image.ContentLength];
                     image.InputStream.Read(book.ImageData, 0, image.ContentLength);
                 }
-                repository.SaveBook(book);
+                bookRepository.SaveBook(book);
                 TempData["message"] = string.Format("Изменения в книге \"{0}\" были сохранены", book.Title);
-                    return RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
             else
                 return View(book);
@@ -40,10 +47,19 @@ namespace BookStore.WebUI.Controllers
         [HttpPost]
         public ActionResult Delete(int bookId)
         {
-            Book deletedBook = repository.DeleteBook(bookId);
-            if (deletedBook != null)         
+            var deletedBook = bookRepository.DeleteBook(bookId);
+            if (deletedBook != null)
                 TempData["message"] = string.Format("Книга \"{0}\" была удалена",
-                    deletedBook.Title);            
+                    deletedBook.Title);
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult GiveRole(int userId, int roleId)
+        {
+            var changedUser = userRepository.GiveRole(userId, roleId);
+            if (changedUser != null)
+                TempData["message"] = string.Format("Роль пользователя \"{0}\" была изменена",
+                    changedUser.Email);
             return RedirectToAction("Index");
         }
     }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using BookStore.Domain.Abstract;
 using BookStore.WebUI.Models;
@@ -13,10 +10,7 @@ namespace BookStore.WebUI.Controllers
     {
         public int pageSize = 4;
         public IBookRepository repository;
-        public BookController(IBookRepository repo)
-        {
-            repository = repo;
-        }
+        public BookController(IBookRepository repo) => repository = repo;
         public ViewResult List(string genre, int page = 1)
         {
             BooksListViewModel model = new BooksListViewModel
@@ -40,7 +34,7 @@ namespace BookStore.WebUI.Controllers
         }
         public FileContentResult GetImage(int bookId)
         {
-            Book book = repository.Books.FirstOrDefault(b => b.BookId == bookId);
+            var book = repository.Books.FirstOrDefault(b => b.BookId == bookId);
             if (book != null)
                 return File(book.ImageData, book.ImageMimeType);
             else

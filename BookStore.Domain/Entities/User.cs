@@ -7,8 +7,8 @@ namespace BookStore.Domain.Entities
     [Table("Users")]
     public class User
     {
-        [HiddenInput(DisplayValue = false)]
         [Key]
+        [Display(Name = "ID")]
         public int UserId { get; set; }
         [Display(Name = "Логин")]
         [Required(ErrorMessage = "Пожалуйста, введите ваш E-mail")]
@@ -24,12 +24,13 @@ namespace BookStore.Domain.Entities
         public int Age { get; set; }
         [HiddenInput(DisplayValue = false)]
         public int RoleId { get; set; }
-        [HiddenInput(DisplayValue = false)]
         public Role Role { get; set; }
     }
     public class Role
     {
+        [HiddenInput(DisplayValue = false)]
         public int RoleId { get; set; }
+        [Display(Name = "Роль")]
         public string Name { get; set; }
     }
 }

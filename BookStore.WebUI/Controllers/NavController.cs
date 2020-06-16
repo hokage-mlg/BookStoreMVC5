@@ -10,7 +10,7 @@ namespace BookStore.WebUI.Controllers
     {
         IBookRepository repository;
         EFDbContext db = new EFDbContext();
-        public NavController(IBookRepository repo) => repository = repo;       
+        public NavController(IBookRepository repo) => repository = repo;
         public PartialViewResult Menu(string genre = null)
         {
             ViewBag.SelectedGenre = genre;
@@ -20,7 +20,7 @@ namespace BookStore.WebUI.Controllers
                 .OrderBy(x => x);
             return PartialView("FlexMenu", genres);
         }
-        public PartialViewResult SearchPanel() => PartialView();      
+        public PartialViewResult SearchPanel() => PartialView();
         [HttpPost]
         public ActionResult BookSearch(string name)
         {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using BookStore.Domain.Abstract;
+﻿using BookStore.Domain.Abstract;
 using BookStore.Domain.Entities;
 
 namespace BookStore.WebUI.Models
@@ -18,7 +13,7 @@ namespace BookStore.WebUI.Models
         public int Quantity;
         public DeliveryDetails DeliveryDetails;
         public User User;
-        public PurchasesListViewModel(Book book,int quantity,DeliveryDetails deliveryDetails,User user)
+        public PurchasesListViewModel(Book book, int quantity, DeliveryDetails deliveryDetails, User user)
         {
             Book = book;
             Quantity = quantity;

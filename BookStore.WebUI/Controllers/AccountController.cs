@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using BookStore.Domain.Entities;
+﻿using BookStore.Domain.Entities;
 using BookStore.Domain.Abstract;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using BookStore.WebUI.Models;
 
 namespace BookStore.WebUI.Controllers
 {
@@ -16,7 +12,6 @@ namespace BookStore.WebUI.Controllers
         public IOrderProcessorDb purchaseRepository;
         public IBookRepository bookRepository;
         public IDeliveryDetailsRepository deliveryDetailsRepository;
-        
         public AccountController(IUserRepository userRepo, IOrderProcessorDb purchaseRepo,
             IBookRepository bookRepo, IDeliveryDetailsRepository deliveryDetailsRepo)
         {
@@ -78,7 +73,7 @@ namespace BookStore.WebUI.Controllers
         }
         public ViewResult Purchases(int userId)
         {
-            var purchases = purchaseRepository.Purchases.Where(p => p.UserId == userId);     
+            var purchases = purchaseRepository.Purchases.Where(p => p.UserId == userId);
             return View(purchases);
         }
         public ActionResult PurchaseDetails(int deliveryDetailsId)
@@ -88,7 +83,7 @@ namespace BookStore.WebUI.Controllers
         }
         public ActionResult DeliveryDetails(int deliveryDetailsId)
         {
-            var deliveryDetails = deliveryDetailsRepository.DeliveryDetails.Where(d=>d.DeliveryDetailsId == deliveryDetailsId).FirstOrDefault();
+            var deliveryDetails = deliveryDetailsRepository.DeliveryDetails.Where(d => d.DeliveryDetailsId == deliveryDetailsId).FirstOrDefault();
             return PartialView(deliveryDetails);
         }
         [HttpPost]
@@ -97,7 +92,7 @@ namespace BookStore.WebUI.Controllers
             var purchases = purchaseRepository.Purchases.Where(p => p.DeliveryDetailsId == deliveryDetailsId).ToList();
             if (purchases != null)
                 foreach (var p in purchases)
-                    purchaseRepository.ConfirmReceipt(p.OrderLineId);          
+                    purchaseRepository.ConfirmReceipt(p.OrderLineId);
             return RedirectToAction("Purchases", new { returnUrl, userId });
         }
     }

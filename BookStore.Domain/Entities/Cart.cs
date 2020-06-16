@@ -9,7 +9,7 @@ namespace BookStore.Domain.Entities
         public IEnumerable<CartLine> Lines => lineCollection;
         public void AddItem(Book book, int quantity)
         {
-            CartLine line = lineCollection.Where(b => b.Book.BookId == book.BookId).FirstOrDefault();
+            var line = lineCollection.Where(b => b.Book.BookId == book.BookId).FirstOrDefault();
             if (line == null)
             {
                 lineCollection.Add(new CartLine

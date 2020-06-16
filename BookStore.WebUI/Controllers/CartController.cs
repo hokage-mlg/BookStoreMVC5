@@ -35,7 +35,7 @@ namespace BookStore.WebUI.Controllers
             {
                 orderProcessor.ProcessOrder(cart, deliveryDetails);
                 deliveryDetailsRepository.SaveDeliveryDetails(deliveryDetails);
-                orderProcessorDB.ProcessOrderDB(cart, deliveryDetails, user);                
+                orderProcessorDB.ProcessOrderDB(cart, deliveryDetails, user);
                 cart.Clear();
                 return View("Completed");
             }
@@ -43,24 +43,21 @@ namespace BookStore.WebUI.Controllers
                 return View(deliveryDetails);
         }
         public PartialViewResult Summary(Cart cart) => PartialView(cart);
-        public ViewResult Index(Cart cart, string returnUrl)
+        public ViewResult Index(Cart cart, string returnUrl) => View(new CartIndexViewModel
         {
-            return View(new CartIndexViewModel
-            {
-                Cart = cart,
-                ReturnUrl = returnUrl
-            });
-        }
+            Cart = cart,
+            ReturnUrl = returnUrl
+        });
         public RedirectToRouteResult AddToCart(Cart cart, int bookId, string returnUrl)
         {
-            Book book = bookRepository.Books.Where(b => b.BookId == bookId).FirstOrDefault();
+            var book = bookRepository.Books.Where(b => b.BookId == bookId).FirstOrDefault();
             if (book != null)
                 cart.AddItem(book, 1);
             return RedirectToAction("Index", new { returnUrl });
         }
         public RedirectToRouteResult RemoveFromCart(Cart cart, int bookId, string returnUrl)
         {
-            Book book = bookRepository.Books.Where(b => b.BookId == bookId).FirstOrDefault();
+            var book = bookRepository.Books.Where(b => b.BookId == bookId).FirstOrDefault();
             if (book != null)
                 cart.RemoveLine(book);
             return RedirectToAction("Index", new { returnUrl });

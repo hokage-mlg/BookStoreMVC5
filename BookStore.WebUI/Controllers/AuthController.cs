@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using BookStore.WebUI.Models;
 using BookStore.Domain.Entities;
 using BookStore.Domain.Concrete;
-using BookStore.Domain.Abstract;
 using System.Web.Security;
 
 namespace BookStore.WebUI.Controllers

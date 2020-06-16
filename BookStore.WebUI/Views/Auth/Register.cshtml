@@ -1,16 +1,12 @@
 ﻿@model BookStore.WebUI.Models.RegisterViewModel
-
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Регистрация";
 }
-<link href="~/Content/BackgroundFormStyles.css" rel="stylesheet" />
-
 <div class="form">
     <h2>Регистрация <i class="fas fa-book-open fa-spin"></i></h2>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-
         <div class="form-horizontal">
             <h4>Пожалуйста, заполните указанные поля</h4>
             <hr />
@@ -33,7 +29,6 @@
                 </div>
                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "col-md-10 text-danger" })
             </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10 input-group" style="width:350px">
@@ -98,7 +93,6 @@
             </div>
         </div>
     }
-
     <div class="form-footer">
         @Html.ActionLink("Вернуться на главную страницу", "List", "Book")
     </div>

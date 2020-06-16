@@ -26,5 +26,15 @@ namespace BookStore.Domain.Concrete
                 dbEntry.Password = newPass;
             context.SaveChanges();
         }
+        public User GiveRole(int userId, int roleId)
+        {
+            var dbEntry = context.Users.Find(userId);
+            if (dbEntry != null)
+            {
+                dbEntry.RoleId = roleId;
+                context.SaveChanges();
+            }
+            return dbEntry;
+        }
     }
 }
