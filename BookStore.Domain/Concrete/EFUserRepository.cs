@@ -22,9 +22,11 @@ namespace BookStore.Domain.Concrete
         public void ChangePassword(User user, string newPass)
         {
             var dbEntry = context.Users.Find(user.UserId);
-            if (dbEntry != null)
+            if (dbEntry != null && newPass != "")
+            {
                 dbEntry.Password = newPass;
-            context.SaveChanges();
+                context.SaveChanges();
+            }
         }
         public User GiveRole(int userId, int roleId)
         {

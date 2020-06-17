@@ -10,16 +10,30 @@ namespace BookStore.WebUI.Controllers
     {
         public IBookRepository bookRepository;
         public IUserRepository userRepository;
+        public IDeliveryDetailsRepository deliveryDetailsRepository;
         public IOrderProcessorDb purchaseRepository;
-        public AdminController(IBookRepository bookRepo, IUserRepository userRepo, IOrderProcessorDb purchaseRepo)
+        public AdminController(IBookRepository bookRepo, IUserRepository userRepo,
+            IOrderProcessorDb purchaseRepo, IDeliveryDetailsRepository deliveryDetailsRepo)
         {
             bookRepository = bookRepo;
             userRepository = userRepo;
             purchaseRepository = purchaseRepo;
+            deliveryDetailsRepository = deliveryDetailsRepo;
         }
         public ViewResult Index() => View();
         public ActionResult BookList() => PartialView(bookRepository.Books);
         public ActionResult UserList() => PartialView(userRepository.Users);
+        public ActionResult PurchaseList() => PartialView(purchaseRepository.Purchases);
+        public ActionResult PurchaseDetails(int deliveryDetailsId)
+        {
+            var purchases = purchaseRepository.Purchases.Where(p => p.DeliveryDetailsId == deliveryDetailsId);
+            return PartialView(purchases);
+        }
+        public ActionResult DeliveryDetails(int deliveryDetailsId)
+        {
+            var deliveryDetails = deliveryDetailsRepository.DeliveryDetails.Where(d => d.DeliveryDetailsId == deliveryDetailsId).FirstOrDefault();
+            return PartialView(deliveryDetails);
+        }
         public ViewResult Edit(int bookId)
         {
             var book = bookRepository.Books.FirstOrDefault(b => b.BookId == bookId);

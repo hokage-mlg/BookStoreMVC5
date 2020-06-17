@@ -1,0 +1,37 @@
+﻿@model BookStore.Domain.Entities.DeliveryDetails
+<div class="card">
+    <div class="card card-header">
+        <h3>
+            Детали доставки #@Model.DeliveryDetailsId
+        </h3>
+    </div>
+    <div class="card card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <strong>@Html.DisplayNameFor(model => model.FullName):</strong> @Html.DisplayFor(modelItem => Model.FullName)
+            </li>
+            <li class="list-group-item">
+                <strong>@Html.DisplayNameFor(model => model.Postcode):</strong> @Html.DisplayFor(modelItem => Model.Postcode)
+            </li>
+            <li class="list-group-item">
+                <strong>@Html.DisplayNameFor(model => model.Country):</strong> @Html.DisplayFor(modelItem => Model.Country)
+            </li>
+            <li class="list-group-item">
+                <strong>@Html.DisplayNameFor(model => model.City):</strong> @Html.DisplayFor(modelItem => Model.City)
+            </li>
+            <li class="list-group-item">
+                <strong>@Html.DisplayNameFor(model => model.Street):</strong> @Html.DisplayFor(modelItem => Model.Street)
+            </li>
+            <li class="list-group-item">
+                <strong>@Html.DisplayNameFor(model => model.Building):</strong> @Html.DisplayFor(modelItem => Model.Building)
+            </li>
+            <li class="list-group-item">
+                <strong>@Html.DisplayNameFor(model => model.ApartmentNum):</strong> @Html.DisplayFor(modelItem => Model.ApartmentNum)
+            </li>
+            <li class="list-group-item">
+                <strong>@Html.DisplayNameFor(model => model.GiftWrap):</strong> @Html.DisplayFor(modelItem => Model.GiftWrap)
+            </li>
+        </ul>
+    </div>
+    <br />
+</div>

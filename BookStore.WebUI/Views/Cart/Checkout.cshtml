@@ -1,8 +1,8 @@
 ﻿@model BookStore.Domain.Entities.DeliveryDetails
 @{
-    ViewBag.Title = "BookStore: форма заказа";
+    ViewBag.Title = "Форма заказа";
 }
-<div class="form">
+<div class="form" style="width:500px">
     <h2>Оформить заказ сейчас</h2>
     <p>Пожалуйста введи ваши контактные данные, и мы сразу отправим товар!</p>
     <hr />
@@ -12,7 +12,7 @@
         <h3>Данные</h3>
         <div class="form-group">
             <label>Введите фамилию, имя, отчество получателя:</label>
-            @Html.TextBoxFor(x => x.FullName, new { @class = "form-control", @style = "margin-left:20px;" })
+            @Html.TextBoxFor(x => x.FullName, new { @class = "form-control", @style = "margin-left:20px;width:300px" })
         </div>
         <hr />
         <h3>Адрес доставки</h3>
@@ -23,7 +23,7 @@
             {
                 <div class="form-group">
                     <label>@(property.DisplayName ?? property.PropertyName)</label>
-                    @Html.TextBox(property.PropertyName, null, new { @class = "form-control", @style = "margin-left:20px;" })
+                    @Html.TextBox(property.PropertyName, null, new { @class = "form-control", @style = "margin-left:20px;width:240px" })
                 </div>
             }
         }

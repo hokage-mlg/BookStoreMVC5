@@ -42,13 +42,15 @@
         }
     </table>
     <div id="showDetails"></div>
+    <a href='javascript:history.go(-1)' class="btn btn-primary">Перейти к профилю</a>
 }
 else
 {
-<div class="form">
-    <h1 class="text-center">К сожалению, вы ничего не заказали.</h1>
-    <p>Можете ознакомиться с нашим <a href="@Url.Action("List","Book")">каталогом книг</a>. Мы уверены, что вы сможете что-нибудь подобрать для себя.</p>
-</div>
-<br />
+    <div class="form">
+        <h1 class="text-center">К сожалению, вы ничего не заказали.</h1>
+        <p>Можете ознакомиться с нашим <a href="@Url.Action("List","Book")">каталогом книг</a>. Мы уверены, что вы сможете что-нибудь подобрать для себя.</p>
+        <div class="wrapper" style="text-align:center; margin-bottom:20px">
+            <a href='javascript:history.go(-1)' class="btn btn-primary" style="margin: 0 auto;">Перейти к профилю</a>
+        </div>
+    </div>
 }
-<a href='javascript:history.go(-1)' class="btn btn-primary">Перейти к профилю</a>

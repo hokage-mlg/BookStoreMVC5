@@ -26,7 +26,7 @@ namespace BookStore.WebUI.Controllers
         {
             var allbooks = db.Books.Where(a => a.Author.Contains(name) || a.Title.Contains(name)).ToList();
             if (allbooks.Count <= 0)
-                return View("NotFound");
+                return PartialView("NotFound");
             return PartialView(allbooks);
         }
     }

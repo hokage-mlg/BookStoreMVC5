@@ -2,6 +2,7 @@
     background-color: antiquewhite;
     border: 6px solid antiquewhite;
     border-radius: 25px;
+    margin: auto;
 }
 
     .form h2 {
@@ -57,6 +58,7 @@
     background-color: antiquewhite;
     border: 6px solid antiquewhite;
     border-radius: 25px;
+    margin: auto;
 }
 
     .panel .panel-heading {
@@ -98,15 +100,31 @@
 }
 
 @media all and (max-width: 800px) {
+    .form {
+        width: 95% !important;
+    }
+
+        .form .form-group {
+            width: 90% !important;
+        }
+
+    .panel {
+        width: 95% !important;
+    }
+
     .form .form-control {
-        width: 70%;
+        width: 90% !important;
     }
 
     .form .form-horizontal .form-group {
-        width: 70%;
+        width: 70% !important;
     }
 
+        .form .form-horizontal .form-group .input-group {
+            width: 140% !important;
+        }
+
     .panel .panel-body .form-control {
-        width: 70%;
+        width: 70% !important;
     }
 }

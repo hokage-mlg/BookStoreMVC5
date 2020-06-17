@@ -336,6 +336,9 @@
     <Content Include="Views\Account\DeliveryDetails.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\UserList.cshtml" />
+    <Content Include="Views\Admin\PurchaseList.cshtml" />
+    <Content Include="Views\Admin\PurchaseDetails.cshtml" />
+    <Content Include="Views\Admin\DeliveryDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

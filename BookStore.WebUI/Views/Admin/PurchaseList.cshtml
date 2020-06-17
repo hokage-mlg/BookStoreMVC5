@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BookStore.Domain.Entities.Purchase>
+@using BookStore.Domain.Concrete;
+@{
+    var db = new EFDbContext();
+}
+@if (Model.Any())
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Список заказов</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped table-condensed table-bordered">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OrderLineId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserId)
+                    </th>
+                    <th>
+                        Логин
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DeliveryDetailsId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DeliveryStatus)
+                    </th>
+                    <th>Действия</th>
+                </tr>
+                @foreach (var item in Model.GroupBy(p => p.DeliveryDetailsId).Select(g => g.First()).ToList())
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderLineId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserId)
+                        </td>
+                        <td>
+                            @db.Users.Find(item.UserId).Email
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DeliveryDetailsId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DeliveryStatus)
+                        </td>
+                        <td>
+                            @Ajax.ActionLink("Показать детали", "PurchaseDetails", new { item.DeliveryDetailsId },
+                                                         new AjaxOptions { UpdateTargetId = "showDetailsAdmin" })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <div id="showDetailsAdmin"></div>
+}
+else
+{
+    <h1 class="text-center">К сожалению, вы ничего не заказали.</h1>
+    <br />
+}

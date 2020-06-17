@@ -55,8 +55,10 @@ namespace BookStore.WebUI.Controllers
             var user = userRepository.Users.FirstOrDefault(u => u.UserId == userId);
             if (ModelState.IsValid)
             {
-                if (oldPass == newPass)
-                    ModelState.AddModelError("", "Текущий и новый пароли. Изменение невозможно.");
+                if (newPass == "")
+                    ModelState.AddModelError("", "Вы не ввели новый пароль. Изменение невозможно.");
+                else if (oldPass == newPass)
+                    ModelState.AddModelError("", "Текущий и новый пароли совпадают. Изменение невозможно.");
                 else if (user.Password == oldPass)
                 {
                     userRepository.ChangePassword(user, newPass);

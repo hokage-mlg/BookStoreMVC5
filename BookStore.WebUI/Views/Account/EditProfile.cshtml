@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Редактирование профиля";
 }
-<div class="panel">
+<div class="panel" style="width:400px">
     <div class="panel-heading">
         <h3>Редактирование профиля</h3>
     </div>
@@ -30,13 +30,13 @@ FormMethod.Post))
                             @if (property.PropertyName == "Email")
                             {
                                 @Html.TextBox(property.PropertyName, null,
-                                new { @class = "form-control", @type = "email" })
+                                new { @class = "form-control", @type = "email", @style = "width:300px" })
                                 @Html.ValidationMessage(property.PropertyName)
                             }
                             else
                             {
                                 @Html.TextBox(property.PropertyName, null,
-                                new { @class = "form-control" })
+                                new { @class = "form-control", @style = "width:300px" })
                                 @Html.ValidationMessage(property.PropertyName)
                             }
                         </div>
@@ -44,9 +44,9 @@ FormMethod.Post))
                 }
             }
         </div>
-        <div class="panel-footer">
+        <div class="panel-footer" style="text-align:center">
             <input type="submit" value="Сохранить" class="btn btn-primary" />
-            @Html.ActionLink("Отменить изменения", "Index", null, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Отменить", "Index", null, new { @class = "btn btn-danger", @style = "margin-left:40px" })
         </div>
     }
 </div>
