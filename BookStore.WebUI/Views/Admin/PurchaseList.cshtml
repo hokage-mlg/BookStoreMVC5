@@ -50,6 +50,33 @@
                         <td>
                             @Ajax.ActionLink("Показать детали", "PurchaseDetails", new { item.DeliveryDetailsId },
                                                          new AjaxOptions { UpdateTargetId = "showDetailsAdmin" })
+                            @using (Html.BeginForm("DeletePurchase", "Admin"))
+                            {
+                                @Html.Hidden("DeliveryDetailsId", item.DeliveryDetailsId)
+                                <input type="submit"
+                                       class="btn btn-warning btn-xs"
+                                       value="Удалить"
+                                       style="margin-top:10px;" />
+                            }
+                            @if (item.DeliveryStatus != "Получен")
+                            {
+                                if (item.DeliveryStatus == "Отправлен")
+                                {
+                                    using (Html.BeginForm("DeferPurchase", "Admin"))
+                                    {
+                                        @Html.Hidden("deliveryDetailsId", item.DeliveryDetailsId)
+                                        <input type="submit" class="btn btn-warning btn-xs" style="margin-top:10px" value="Отложить" />
+                                    }
+                                }
+                                else
+                                {
+                                    using (Html.BeginForm("SendPurchase", "Admin"))
+                                    {
+                                        @Html.Hidden("deliveryDetailsId", item.DeliveryDetailsId)
+                                        <input type="submit" class="btn btn-success btn-xs" style="margin-top:10px" value="Отправить" />
+                                    }
+                                }
+                            }
                         </td>
                     </tr>
                 }

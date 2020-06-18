@@ -27,12 +27,21 @@ namespace BookStore.Domain.Concrete
             }
             context.SaveChanges();
         }
-        public void ConfirmReceipt(int orderLineId)
+        public void ChangeDeliveryStatus(int orderLineId, string status)
         {
             var dbEntry = context.Purchases.Find(orderLineId);
             if (dbEntry != null)
             {
-                dbEntry.DeliveryStatus = "Получен";
+                dbEntry.DeliveryStatus = status;
+                context.SaveChanges();
+            }
+        }
+        public void DeletePurchase(int orderLineId)
+        {
+            var dbEntry = context.Purchases.Find(orderLineId);
+            if (dbEntry != null)
+            {
+                context.Purchases.Remove(dbEntry);
                 context.SaveChanges();
             }
         }

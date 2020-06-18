@@ -21,3 +21,67 @@
 .panel-body .table tr td {
     text-align: center
 }
+
+.card {
+    background-color: antiquewhite;
+    border: 6px solid antiquewhite;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+    .card .list-group .list-group-item {
+        background-color: antiquewhite;
+    }
+
+.card {
+    width: 600px;
+    margin: auto;
+}
+
+.form {
+    background-color: antiquewhite;
+    border: 6px solid antiquewhite;
+    border-radius: 25px;
+    margin: auto;
+}
+
+    .form h2 {
+        margin: 20px;
+    }
+
+    .form h3 {
+        margin: 20px;
+    }
+
+    .form p {
+        margin: 20px;
+    }
+
+    .form .form-horizontal h4 {
+        margin-left: 20px;
+    }
+
+    .form .form-footer {
+        margin: 20px;
+    }
+
+    .form .form-control {
+        width: 450px;
+    }
+
+    .form .form-group label {
+        margin-left: 20px;
+    }
+
+
+    .form .text-center {
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+@media all and (max-width: 800px) {
+    .card {
+        width: 90% !important;
+        justify-content: center !important;
+    }
+}

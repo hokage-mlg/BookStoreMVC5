@@ -1,12 +1,18 @@
 ﻿@{
-    ViewBag.Title = "Админ. панель";
+    ViewBag.TitleName = "Админ. панель";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-@Ajax.ActionLink("Список книг", "BookList", null, new AjaxOptions { UpdateTargetId = "showBookList" }, new { @class = "btn btn-primary" })
-@Ajax.ActionLink("Список пользователей", "UserList", null, new AjaxOptions { UpdateTargetId = "showUserList" }, new { @class = "btn btn-primary" })
-@Ajax.ActionLink("Список заказов", "PurchaseList", null, new AjaxOptions { UpdateTargetId = "showPurchaseList" }, new { @class = "btn btn-primary" })
-@Html.ActionLink("Вернуться на главную", "List", "Book", null,
-           new { @class = "btn btn-primary" })
+<div class="card card-body">
+    <h3 style="text-align:center">
+        <strong>Админ. панель</strong>
+    </h3>
+    @Ajax.ActionLink("Список книг", "BookList", null, new AjaxOptions { UpdateTargetId = "showBookList" }, new { @class = "btn btn-primary", @style = "margin-bottom:20px" })
+    @Ajax.ActionLink("Список пользователей", "UserList", null, new AjaxOptions { UpdateTargetId = "showUserList" }, new { @class = "btn btn-primary", @style = "margin-bottom:20px" })
+    @Ajax.ActionLink("Список заказов", "PurchaseList", null, new AjaxOptions { UpdateTargetId = "showPurchaseList" }, new { @class = "btn btn-primary", @style = "margin-bottom:20px" })
+    <br />
+    @Html.ActionLink("Вернуться на главную", "List", "Book", null,
+               new { @class = "btn btn-primary" })
+</div>
 <div id="showBookList"></div>
 <div id="showUserList"></div>
 <div id="showPurchaseList"></div>

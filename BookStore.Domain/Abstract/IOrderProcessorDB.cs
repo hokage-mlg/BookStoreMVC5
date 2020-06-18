@@ -7,6 +7,7 @@ namespace BookStore.Domain.Abstract
     {
         IEnumerable<Purchase> Purchases { get; }
         void ProcessOrderDB(Cart cart, DeliveryDetails deliveryDetails, User user);
-        void ConfirmReceipt(int orderLineId);
+        void ChangeDeliveryStatus(int orderLineId, string status);
+        void DeletePurchase(int orderLineId);
     }
 }

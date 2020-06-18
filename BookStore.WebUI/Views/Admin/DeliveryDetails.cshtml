@@ -1,11 +1,9 @@
 ﻿@model BookStore.Domain.Entities.DeliveryDetails
-<div class="card">
-    <div class="card card-header">
+ 
+    <div class="card card-body">
         <h3>
             Детали доставки #@Model.DeliveryDetailsId
         </h3>
-    </div>
-    <div class="card card-body">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
                 <strong>@Html.DisplayNameFor(model => model.FullName):</strong> @Html.DisplayFor(modelItem => Model.FullName)
@@ -34,4 +32,3 @@
         </ul>
     </div>
     <br />
-</div>

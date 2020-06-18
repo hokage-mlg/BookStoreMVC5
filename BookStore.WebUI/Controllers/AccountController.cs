@@ -94,7 +94,7 @@ namespace BookStore.WebUI.Controllers
             var purchases = purchaseRepository.Purchases.Where(p => p.DeliveryDetailsId == deliveryDetailsId).ToList();
             if (purchases != null)
                 foreach (var p in purchases)
-                    purchaseRepository.ConfirmReceipt(p.OrderLineId);
+                    purchaseRepository.ChangeDeliveryStatus(p.OrderLineId, "Получен");
             return RedirectToAction("Purchases", new { returnUrl, userId });
         }
     }

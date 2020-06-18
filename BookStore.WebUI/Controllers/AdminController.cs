@@ -68,6 +68,36 @@ namespace BookStore.WebUI.Controllers
             return RedirectToAction("Index");
         }
         [HttpPost]
+        public ActionResult DeletePurchase(int deliveryDetailsId)
+        {
+            var purchases = purchaseRepository.Purchases.Where(p => p.DeliveryDetailsId == deliveryDetailsId).ToList();
+            if (purchases != null)
+                foreach (var p in purchases)
+                {
+                    TempData["message"] = string.Format("Заказ был удален");
+                    purchaseRepository.DeletePurchase(p.OrderLineId);
+                }
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult DeferPurchase(int deliveryDetailsId)
+        {
+            var purchases = purchaseRepository.Purchases.Where(p => p.DeliveryDetailsId == deliveryDetailsId).ToList();
+            if (purchases != null)
+                foreach (var p in purchases)
+                    purchaseRepository.ChangeDeliveryStatus(p.OrderLineId, "Отложен");
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult SendPurchase(int deliveryDetailsId)
+        {
+            var purchases = purchaseRepository.Purchases.Where(p => p.DeliveryDetailsId == deliveryDetailsId).ToList();
+            if (purchases != null)
+                foreach (var p in purchases)
+                    purchaseRepository.ChangeDeliveryStatus(p.OrderLineId, "Отправлен");
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
         public ActionResult GiveRole(int userId, int roleId)
         {
             var changedUser = userRepository.GiveRole(userId, roleId);
