@@ -21,9 +21,6 @@ namespace BookStore.Domain.Concrete
                     DeliveryStatus = "Отправлен"
                 };
                 context.Purchases.Add(purchase);
-                var dbEntry = context.Books.Find(line.Book.BookId);
-                if (dbEntry != null)
-                    dbEntry.Quantity -= line.Quantity;
             }
             context.SaveChanges();
         }

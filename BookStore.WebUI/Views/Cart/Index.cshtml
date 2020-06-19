@@ -55,7 +55,14 @@
         <a class="btn btn-primary" href="@Model.ReturnUrl">Продолжить покупки</a>
         @if (Model.Cart.Lines.Any())
         {
-            @Html.ActionLink("Оформить заказ", "Checkout", null, new { @class = "btn btn-primary" })
+            if (!User.Identity.IsAuthenticated)
+            {
+                <a href="@Url.Action("Login", "Auth")" class="btn btn-primary">Оформить заказ</a>
+            }
+            else
+            {
+                @Html.ActionLink("Оформить заказ", "Checkout", null, new { @class = "btn btn-primary" })
+            }
         }
     </div>
 </div>

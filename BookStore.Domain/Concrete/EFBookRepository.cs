@@ -7,7 +7,7 @@ namespace BookStore.Domain.Concrete
     public class EFBookRepository : IBookRepository
     {
         EFDbContext context = new EFDbContext();
-        public IEnumerable<Book> Books => context.Books;     
+        public IEnumerable<Book> Books => context.Books;
         public void SaveBook(Book book)
         {
             if (book.BookId == 0)
@@ -38,6 +38,24 @@ namespace BookStore.Domain.Concrete
                 context.SaveChanges();
             }
             return dbEntry;
+        }
+        public void AddToCart(Book book, int quantity)
+        {
+            var dbEntry = context.Books.Find(book.BookId);
+            if (dbEntry != null && dbEntry.Quantity>=0)
+            {
+                dbEntry.Quantity -= quantity;
+            }
+            context.SaveChanges();
+        }
+        public void RemoveFromCart(Book book, int quantity)
+        {
+            var dbEntry = context.Books.Find(book.BookId);
+            if (dbEntry != null)
+            {
+                dbEntry.Quantity += quantity;
+                context.SaveChanges();
+            }
         }
     }
 }

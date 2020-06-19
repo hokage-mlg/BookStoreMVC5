@@ -23,7 +23,6 @@ namespace BookStore.WebUI.Controllers
             userRepository = userRepo;
         }
         public CartController(IBookRepository repo) => bookRepository = repo;
-        [Authorize(Roles = "user")]
         public ViewResult Checkout() => View(new DeliveryDetails());
         [HttpPost]
         public ViewResult Checkout(Cart cart, DeliveryDetails deliveryDetails)
@@ -51,15 +50,22 @@ namespace BookStore.WebUI.Controllers
         public RedirectToRouteResult AddToCart(Cart cart, int bookId, string returnUrl)
         {
             var book = bookRepository.Books.Where(b => b.BookId == bookId).FirstOrDefault();
-            if (book != null)
+            if (book != null && book.Quantity > 0)
+            {
                 cart.AddItem(book, 1);
+                bookRepository.AddToCart(book, 1);
+            }
             return RedirectToAction("Index", new { returnUrl });
         }
         public RedirectToRouteResult RemoveFromCart(Cart cart, int bookId, string returnUrl)
         {
             var book = bookRepository.Books.Where(b => b.BookId == bookId).FirstOrDefault();
             if (book != null)
+            {
+                foreach (var line in cart.Lines.Where(b => b.Book.BookId == bookId).ToList())
+                    bookRepository.RemoveFromCart(book, line.Quantity);
                 cart.RemoveLine(book);
+            }
             return RedirectToAction("Index", new { returnUrl });
         }
     }
