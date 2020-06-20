@@ -10,21 +10,21 @@ This file will describe the main features that are available to users and admini
 On the main window, the user can select the section of the site he needs, select the book genre that interests him,
 find the book by author or title, go to his personal account and so on. Thus, the main window on the desktop computer looks like this:
 
-<div align="center">
+<p align="center">
 <img src="https://github.com/hokage-mlg/BookStoreMVC5/blob/master/Screenshots/MainWindow.png">
-</div>
+</p>
 
 The application also partially supports use via mobile devices (tested on Pixel 2). This is how the main window on the phones looks:
 
-<div align="center">
+<p align="center">
 <img src="https://github.com/hokage-mlg/BookStoreMVC5/blob/master/Screenshots/MainWindowMobile.png">
-</div>
+</p>
 
 Book search example:
 
-<div align="center">
+<p align="center">
 <img src="https://github.com/hokage-mlg/BookStoreMVC5/blob/master/Screenshots/Search.png">
-</div>
+</p>
 
 ### Registration, Authentication and Authorization
 
@@ -32,15 +32,15 @@ The user can either create or enter into an already created profile.
 
 Register window:
 
-<div align="center">
+<p align="center">
 <img src="https://github.com/hokage-mlg/BookStoreMVC5/blob/master/Screenshots/Register.png">
-</div>
+</p>
 
 Login window:
 
-<div align="center">
+<p align="center">
 <img src="https://github.com/hokage-mlg/BookStoreMVC5/blob/master/Screenshots/Login.png">
-</div>
+</p>
 
 >Yes, the book logo rotates, thanks to <a href="https://fontawesome.com/">fontawesome</a> ❤️
 
@@ -53,39 +53,39 @@ The user can change the data of his account, change the password, monitor the st
 
 This is what the main user account window looks like:
 
-<div align="center">
+<p align="center">
 <img src="https://github.com/hokage-mlg/BookStoreMVC5/blob/master/Screenshots/Profile.png">
-</div>
+</p>
 
 This is how the user info change window looks:
 
-<div align="center">
+<p align="center">
 <img src="https://github.com/hokage-mlg/BookStoreMVC5/blob/master/Screenshots/EditProfile.png">
-</div>
+</p>
 
 This is how the user password change window looks:
 
-<div align="center">
+<p align="center">
 <img src="https://github.com/hokage-mlg/BookStoreMVC5/blob/master/Screenshots/EditPassword.png">
-</div>
+</p>
 
 Here is the user's shopping cart:
 
-<div align="center">
+<p align="center">
 <img src="https://github.com/hokage-mlg/BookStoreMVC5/blob/master/Screenshots/Cart.png">
-</div>
+</p>
 
 This is how the window for filling out delivery information looks like:
 
-<div align="center">
+<p align="center">
 <img src="https://github.com/hokage-mlg/BookStoreMVC5/blob/master/Screenshots/EditDeliveryInfo.png">
-</div>
+</p>
 
 This is the window for viewing user orders:
 
-<div align="center">
+<p align="center">
 <img src="https://github.com/hokage-mlg/BookStoreMVC5/blob/master/Screenshots/OrderList.png">
-</div>
+</p>
 
 ### Admin Account
 
@@ -93,16 +93,16 @@ The administrator can view information about books, change their properties, add
 
 The main window of the admin panel:
 
-<div align="center">
+<p align="center">
 <img src="https://github.com/hokage-mlg/BookStoreMVC5/blob/master/Screenshots/AdminPanel1.png">
 <img src="https://github.com/hokage-mlg/BookStoreMVC5/blob/master/Screenshots/AdminPanel2.png">
-</div>
+</p>
 
 This is how the book editing window looks:
 
-<div align="center">
+<p align="center">
 <img src="https://github.com/hokage-mlg/BookStoreMVC5/blob/master/Screenshots/EditBook.png">
-</div>
+</p>
 
 ## Programming Languages
 - JS
