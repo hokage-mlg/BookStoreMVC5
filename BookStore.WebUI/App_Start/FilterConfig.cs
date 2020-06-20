@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using BookStore.WebUI.Filters;
 
 namespace BookStore.WebUI.App_Start

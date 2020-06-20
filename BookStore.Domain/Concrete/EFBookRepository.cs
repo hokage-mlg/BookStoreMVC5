@@ -42,7 +42,7 @@ namespace BookStore.Domain.Concrete
         public void AddToCart(Book book, int quantity)
         {
             var dbEntry = context.Books.Find(book.BookId);
-            if (dbEntry != null && dbEntry.Quantity>=0)
+            if (dbEntry != null && dbEntry.Quantity >= 0)
             {
                 dbEntry.Quantity -= quantity;
             }

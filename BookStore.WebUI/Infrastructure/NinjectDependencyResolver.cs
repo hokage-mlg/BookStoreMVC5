@@ -7,8 +7,6 @@ using BookStore.Domain.Entities;
 using BookStore.Domain.Concrete;
 using Moq;
 using Ninject;
-//using BookStore.WebUI.Infrastructure.Abstract;
-//using BookStore.WebUI.Infrastructure.Concrete;
 
 namespace BookStore.WebUI.Infrastructure
 {

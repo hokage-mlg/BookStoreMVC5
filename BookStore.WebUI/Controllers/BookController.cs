@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using BookStore.Domain.Abstract;
 using BookStore.WebUI.Models;
-using BookStore.Domain.Entities;
 
 namespace BookStore.WebUI.Controllers
 {

@@ -1,4 +1,6 @@
-﻿INSERT INTO Books(Title, Author, Genre, Description, Price, Quantity, ImageData, ImageMimeType)
+﻿-- Filling the database with information about books.
+-- If something went wrong, remove the ImageData and ImageMimeType from this request.
+INSERT INTO Books(Title, Author, Genre, Description, Price, Quantity, ImageData, ImageMimeType)
 VALUES
 (N'Пир во время чумы', N'Александр Сергеевич Пушкин', N'Трагедия', N'«Пир во время чумы» — образец переводческого мастерства
 поэта: небольшой фрагмент трехактной пьесы «Чумной город» шотландского автора Джона Вильсона Пушкин превратил в самостоятельное произведение. 

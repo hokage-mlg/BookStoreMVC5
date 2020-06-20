@@ -7,8 +7,7 @@
         <h3>Редактирование профиля</h3>
     </div>
     <hr />
-    @using (Html.BeginForm("EditProfile", "Account",
-FormMethod.Post))
+    @using (Html.BeginForm("EditProfile", "Account", FormMethod.Post))
     {
         <div class="panel-body">
             @Html.HiddenFor(m => m.UserId)

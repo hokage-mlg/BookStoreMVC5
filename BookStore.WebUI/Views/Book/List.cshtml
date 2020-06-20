@@ -4,13 +4,11 @@
 @{
     ViewBag.Title = "Товары";
 }
-<div id="results">
-    @foreach (var p in @Model.Books)
-    {
-        @Html.Partial("BookSummary", p)
-    }
-    <div class="btn-group pull-right bg-light" style="border-radius: 5px;">
-        @Html.PageLinks(Model.PagingInfo, x => Url.Action("List",
-            new { page = x, genre = Model.CurrentGenre }))
-    </div>
+@foreach (var p in @Model.Books)
+{
+    @Html.Partial("BookSummary", p)
+}
+<div class="btn-group pull-right bg-light" style="border-radius: 5px;">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List",
+        new { page = x, genre = Model.CurrentGenre }))
 </div>

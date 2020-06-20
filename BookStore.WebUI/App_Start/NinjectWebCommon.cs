@@ -11,26 +11,13 @@ namespace BookStore.WebUI.App_Start
     public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
-        /// <summary>
-        /// Starts the application
-        /// </summary>
         public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-        /// <summary>
-        /// Stops the application.
-        /// </summary>
-        public static void Stop()
-        {
-            bootstrapper.ShutDown();
-        }
-        /// <summary>
-        /// Creates the kernel that will manage your application.
-        /// </summary>
-        /// <returns>The created kernel.</returns>
+        public static void Stop() => bootstrapper.ShutDown();
         private static IKernel CreateKernel()
         {
             var kernel = new StandardKernel();
@@ -39,14 +26,7 @@ namespace BookStore.WebUI.App_Start
             RegisterServices(kernel);
             return kernel;
         }
-        /// <summary>
-        /// Load your modules or register your services here!
-        /// </summary>
-        /// <param name="kernel">The kernel.</param>
-        private static void RegisterServices(IKernel kernel)
-        {
-            System.Web.Mvc.DependencyResolver.SetResolver(new
-               BookStore.WebUI.Infrastructure.NinjectDependencyResolver(kernel));
-        }
+        private static void RegisterServices(IKernel kernel) =>
+            System.Web.Mvc.DependencyResolver.SetResolver(new Infrastructure.NinjectDependencyResolver(kernel));
     }
 }
