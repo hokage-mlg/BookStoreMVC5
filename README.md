@@ -105,6 +105,7 @@ This is how the book editing window looks:
 </p>
 
 ## Programming Languages
+
 - JS
 - C#
 - Html and CSS
@@ -112,14 +113,12 @@ This is how the book editing window looks:
 
 ## Architecture
 
-I used three-tier architecture:
 - DAL (Data Access Layer) via MS SQL
 - BLL (Business Logic Layer)
 - PL (Presentation Layer)
 
 ## Technology
 
-In my project I used the following technologies:
 - bootstrap
 - FontAwesome
 - EntityFramework
