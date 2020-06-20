@@ -144,3 +144,9 @@ In my project I used the following technologies:
 
 ## Future
 Perhaps in the future I will add new functions for the application, change its structure, fully adapt it for smartphones, change the authorization and authentication system, and so on.
+
+## License
+
+![License](https://img.shields.io/github/license/hokage-mlg/BookStoreMVC5)
+
+[MIT](https://choosealicense.com/licenses/mit/)
