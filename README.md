@@ -147,6 +147,6 @@ Perhaps in the future I will add new functions for the application, change its s
 
 ## License
 
-![License](https://img.shields.io/github/license/hokage-mlg/BookStoreMVC5)
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 [MIT](https://choosealicense.com/licenses/mit/)
